@@ -2,103 +2,190 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lantech - Programming</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Blog LanTech - Programming</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Header -->
     <header>
+        <div class="logo">
+            <h1>LanTech</h1>
+        </div>
+        <div class="mobile-menu-icon">
+            <!-- Ícone do menu -->
+            <span>&#9776;</span> <!-- Ícone de hambúrguer -->
+          </div>
         <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#colaborador">Torna-se Colaborador</a></li>
+            <ul class="desktop-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="noticia.html">News</a></li>
+                <li><a href="colabor.html">Colaboradores</a></li>
+                <li><a href="curso.html">Cursos</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+            <ul class="mobile-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="noticia.html">News</a></li>
+                <li><a href="colabor.html">Colaboradores</a></li>
+                <li><a href="curso.html">Cursos</a></li>
+                <li><a href="contato.html">Contato</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Menu Interativo -->
-    <aside>
-        <nav>
-            <ul>
-                <li><a href="#projetos">Projetos</a></li>
-                <li><a href="#cursos">Cursos e Recursos</a></li>
-                <li><a href="#comunidade">Membros e Comunidade</a></li>
-                <li><a href="#noticias">Notícias</a></li>
-            </ul>
-        </nav>
-    </aside>
-
-    <!-- Conteúdo Principal -->
     <main>
         <section id="home">
-            <h1>Bem-vindo ao Lantech - Programming</h1>
-            <p>Seu espaço para aprender programação e compartilhar conhecimentos.</p>
+            <h1>Bem-vindo ao Blog LanTech - Programming</h1>
+            <p>Estamos vivendo em uma era de inovações tecnológicas rápidas, onde áreas como inteligência artificial, aprendizado de máquina e computação quântica estão moldando o futuro. O aprendizado contínuo e a adaptação a novas tecnologias são essenciais para enfrentar os desafios do amanhã. A cada avanço, novas oportunidades surgem, permitindo que profissionais inovadores criem soluções para transformar indústrias, melhorar a eficiência e conectar o mundo de formas antes inimagináveis.</p>
         </section>
 
-        <!-- Postagem com Imagem -->
-        <section id="post">
-            <h2>Título do Post</h2>
-            <img src="imagem-do-post.jpg" alt="Imagem do Post">
-            <div id="content">
-                <button onclick="toggleContent()">Leia mais...</button>
-                <div id="full-content" style="display:none;">
-                    <p>Conteúdo completo do post.</p>
+        <section id="cursos">
+            <div class="posts-container">
+                <div class="post">
+                    <img src="O QUE É SEGURANÇA DA INFORMAÇÃO.png" alt="Curso de Programação Futurista">
+                    <h3>"Segurança e Cibersegurança"</h3>
+                    <p>"Explorando o mundo da tecnologia com segurança: dicas e recursos para proteger sua jornada na programação."</p>
+                    <button class="saiba-mais-btn" onclick="location.href='pagina.html'">Saiba Mais</button>
                 </div>
+                
+                <div class="post">
+                    <img src="Java X JavaScript.png" alt="Curso de Programação Web">
+                    <h3>"Java x JavaScript: Entenda as Diferenças" </h3>
+                    <p>"Java vs JavaScript: duas linguagens, nomes parecidos, mas mundos totalmente diferentes. Descubra suas diferenças e aplicações!"</p>
+                    <button class="saiba-mais-btn" onclick="location.href='pagina.html'">Saiba Mais</button>
+                </div>
+
+                <div class="post">
+                    <img src="GitHub2.png" alt="Curso de Programação Web">
+                    <h3>"Transforme seu GitHub em Destaque"</h3>
+                    <p>"Descubra como personalizar seu GitHub, organizar projetos, criar um README incrível e impressional a comunidade tech."</p>
+                    <button class="saiba-mais-btn" onclick="location.href='pagina.html'">Saiba Mais</button>
+                </div>
+
+                <div class="post">
+                    <img src="O MERCADO DE TI.png" alt="Curso de Programação Web">
+                    <h3>Curso de Programação Web</h3>
+                    <p>D</p>
+                    <button class="saiba-mais-btn" onclick="location.href='pagina.html'">Saiba Mais</button>
+                </div>
+
+                <div class="post">
+                    <img src="ESTÁ SATURADO..png" alt="Curso de Programação Web">
+                    <h3>Curso de Programação Web</h3>
+                    <p>Domine as melhores práticas para desenvolver websites modernos.</p>
+                    <button class="saiba-mais-btn" onclick="location.href='pagina.html'">Saiba Mais</button>
+                </div>
+
+                <div class="post">
+                    <img src="DESENVOLVIMENTO WEB.png" alt="Curso de Programação Web">
+                    <h3>Curso de Programação Web</h3>
+                    <p>Domine as melhores práticas para desenvolver websites modernos.</p>
+                    <button class="saiba-mais-btn" onclick="location.href='pagina.html'">Saiba Mais</button>
+                </div>
+
+                <div class="post">
+                    <img src="Gerenciamento de tarefas.png" alt="Curso de Programação Web">
+                    <h3>Curso de Programação Web</h3>
+                    <p>Domine as melhores práticas para desenvolver websites modernos.</p>
+                    <button class="saiba-mais-btn" onclick="location.href='pagina.html'">Saiba Mais</button>
+                </div>
+
+                <div class="post">
+                    <img src="O que é Back-End e sua Importância.png" alt="Curso de Programação Web">
+                    <h3>Curso de Programação Web</h3>
+                    <p>Domine as melhores práticas para desenvolver websites modernos.</p>
+                    <button class="saiba-mais-btn" onclick="location.href='pagina.html'">Saiba Mais</button>
+                </div>
+
+                <div class="post">
+                    <img src="ORM e ao JPA em Java.png" alt="Curso de Programação Web">
+                    <h3>Curso de Programação Web</h3>
+                    <p>Domine as melhores práticas para desenvolver websites modernos.</p>
+                    <button class="saiba-mais-btn" onclick="location.href='pagina.html'">Saiba Mais</button>
+                </div>
+
+                <div class="post">
+                    <img src="https://via.placeholder.com/150x150" alt="Curso de Programação Web">
+                    <h3>Curso de Programação Web</h3>
+                    <p>Domine as melhores práticas para desenvolver websites modernos.</p>
+                    <button class="saiba-mais-btn" onclick="location.href='pagina.html'">Saiba Mais</button>
+                </div>
+
+                <div class="post">
+                    <img src="https://via.placeholder.com/150x150" alt="Curso de Programação Web">
+                    <h3>Curso de Programação Web</h3>
+                    <p>Domine as melhores práticas para desenvolver websites modernos.</p>
+                    <button class="saiba-mais-btn" onclick="location.href='pagina.html'">Saiba Mais</button>
+                </div>
+
+                <div class="post">
+                    <img src="https://via.placeholder.com/150x150" alt="Curso de Programação Web">
+                    <h3>Curso de Programação Web</h3>
+                    <p>Domine as melhores práticas para desenvolver websites modernos.</p>
+                    <button class="saiba-mais-btn" onclick="location.href='pagina.html'">Saiba Mais</button>
+                </div>
+
+                <div class="post">
+                    <img src="https://via.placeholder.com/150x150" alt="Curso de Programação Web">
+                    <h3>Curso de Programação Web</h3>
+                    <p>Domine as melhores práticas para desenvolver websites modernos.</p>
+                    <button class="saiba-mais-btn" onclick="location.href='pagina.html'">Saiba Mais</button>
+                </div>
+
+                <div class="post">
+                    <img src="https://via.placeholder.com/150x150" alt="Curso de Programação Web">
+                    <h3>Curso de Programação Web</h3>
+                    <p>Domine as melhores práticas para desenvolver websites modernos.</p>
+                    <button class="saiba-mais-btn" onclick="location.href='pagina.html'">Saiba Mais</button>
+                </div>
+
+                <div class="post">
+                    <img src="https://via.placeholder.com/150x150" alt="Curso de Programação Web">
+                    <h3>Curso de Programação Web</h3>
+                    <p>Domine as melhores práticas para desenvolver websites modernos.</p>
+                    <button class="saiba-mais-btn" onclick="location.href='pagina.html'">Saiba Mais</button>
+                </div>
+
+
+                <!-- Repita para os outros posts -->
             </div>
         </section>
-
-        <!-- Sistema de Curtidas e Comentários -->
-        <section id="comentarios">
-            <button id="curtir">Curtir</button>
-            <div id="contador-curtidas">0 curtidas</div>
-            <h3>Comentários:</h3>
-            <form action="#">
-                <textarea placeholder="Deixe seu comentário"></textarea>
-                <button type="submit">Enviar</button>
-            </form>
-            <ul id="lista-comentarios">
-                <li>Comentário de exemplo</li>
-            </ul>
-        </section>
-        
-        <!-- Seção de Projetos -->
-        <section id="projetos">
-            <h2>Projetos</h2>
-            <ul>
-                <li><a href="#">Projeto 1</a></li>
-                <li><a href="#">Projeto 2</a></li>
-            </ul>
-        </section>
-
-        <!-- Cursos e Recursos -->
-        <section id="cursos">
-            <h2>Cursos e Recursos</h2>
-            <ul>
-                <li><a href="#">Curso 1</a></li>
-                <li><a href="#">Recurso 1</a></li>
-            </ul>
-        </section>
-
-        <!-- Membros e Comunidade -->
-        <section id="comunidade">
-            <h2>Membros e Comunidade</h2>
-            <p>Entre para nossa comunidade e comece a compartilhar conhecimentos!</p>
-        </section>
-
-        <!-- Temporizador ou Contagem Regressiva -->
-        <section id="temporizador">
-            <h2>Contagem Regressiva</h2>
-            <div id="countdown"></div>
-        </section>
-
     </main>
 
-    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Lantech - Programming</p>
+        <div class="footer-content">
+            <div class="footer-left">
+                <p>&copy; 2024 Blog Futurista | Desenvolvido por <strong>Gustavo Lanjoni</strong></p>
+                <p>Entre em contato: <a href="mailto:gustavosilva94514@gmail.com">gustavosilva94514@gmail.com</a></p>
+            </div>
+            <div class="footer-social">
+                <a href="https://github.com/GustavoLanjoni" target="_blank" class="social-icon"><img src="github1.png" alt="GitHub"></a>
+                <a href="https://www.linkedin.com/in/gustavolanjoni/" target="_blank" class="social-icon"><img src="linkedin.png" alt="LinkedIn"></a>
+                <a href="https://www.instagram.com/devlanjoni/" target="_blank" class="social-icon"><img src="instagram.png" alt="Instagram"></a>
+                <a href="https://www.tiktok.com/@gustavo_lanjoni" target="_blank" class="social-icon"><img src="tiktok.png" alt="TikTok"></a>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">Página Inicial</a>
+                <a href="sobre.html">Sobre</a>
+                <a href="noticia.html">News</a>
+                <a href="colabor.html">Colaboradores</a>
+                <a href="curso.html">Cursos</a>
+                <a href="contato.html">Contato</a>
+            </div>
+        </div>
     </footer>
+    
+    
+    
+    
+    
+    
+    
+    
 
     <script src="script.js"></script>
 </body>

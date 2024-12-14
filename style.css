@@ -1,0 +1,369 @@
+/* Resetando margens e paddings e definindo box-sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo geral do body */
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* HEADER: Estilização do cabeçalho */
+header {
+    background: linear-gradient(90deg, #003366, #336699);
+    color: white;
+    padding: 20px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+header .logo h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+}
+
+footer {
+    background-color: #111;
+    padding: 40px 0;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #fff;
+    position: relative;
+    padding: 10px 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: color 0.3s ease;
+}
+
+.footer-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #2575fc;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.footer-links a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.footer-links a:hover {
+    color: #2575fc;
+}
+
+.footer-social {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.social-icon {
+    width: 35px;
+    height: 35px;
+    background-color: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background-color: #2575fc;
+    transform: translateY(-5px);
+}
+
+.social-icon img {
+    width: 20px;
+    height: 20px;
+}
+
+.footer-content p {
+    font-size: 14px;
+    text-align: center;
+    margin: 0;
+    padding: 5px;
+}
+
+/* Mudando a cor do email especificamente */
+.footer-links a.email-link {
+    color: #e91e63; /* Cor que você deseja para o e-mail */
+}
+
+.footer-links a.email-link:hover {
+    color: #f50057; /* Cor para o hover */
+}
+
+
+/* Menu Desktop */
+.desktop-menu {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.desktop-menu li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    text-transform: uppercase;
+    padding: 10px;
+    transition: color 0.3s ease;
+}
+
+.desktop-menu li a:hover {
+    color: #00ffe0;
+}
+
+/* Ícone do menu mobile */
+.mobile-menu-icon {
+    display: none;
+    cursor: pointer;
+}
+
+/* Menu mobile */
+.mobile-menu {
+    list-style: none;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: #003366;
+    padding: 10px;
+}
+
+.mobile-menu li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 10px;
+    text-transform: uppercase;
+}
+
+.mobile-menu li a:hover {
+    background-color: #336699;
+}
+
+/* Main Section */
+main {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Seções */
+section h1 {
+    font-size: 2.5rem;
+    color: #003366;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+section p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+/* Posts */
+.posts-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.post {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.post h3 {
+    font-size: 1.5rem;
+    color: #003366;
+    margin-bottom: 10px;
+}
+
+.post p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.saiba-mais-btn {
+    background-color: #003366;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.saiba-mais-btn:hover {
+    background-color: #336699;
+}
+
+/* Rodapé */
+footer {
+    background-color: #003366;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+footer p {
+    font-size: 1rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 10px;
+        font-size: 16px;
+    }
+
+    .footer-social {
+        margin-top: 20px;
+        gap: 15px;
+    }
+
+    .social-icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .footer-links a {
+        padding: 8px 12px;
+        font-size: 16px;
+    }
+
+    .footer-content p {
+        font-size: 12px;
+        padding: 8px;
+    }
+    
+    header {
+
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 10px;
+    }
+
+    .desktop-menu {
+        display: none; /* Menu de desktop ocultado */
+    }
+
+    .mobile-menu-icon {
+        display: block; /* Ícone do menu visível em telas pequenas */
+        font-size: 2rem;
+        color: white;
+    }
+
+    .mobile-menu.active {
+        display: flex; /* Exibe o menu mobile */
+    }
+
+    /* Modificar a disposição da logo e o menu */
+    header .logo {
+        margin-right: 20px; /* Dá espaço entre a logo e o menu */
+    }
+
+    .mobile-menu {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #003366;
+        padding: 10px;
+    }
+
+    .posts-container {
+        flex-direction: column;
+    }
+
+    .post {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-links a {
+        font-size: 14px;
+    }
+
+    .social-icon {
+        width: 25px;
+        height: 25px;
+    }
+
+    .footer-content p {
+        font-size: 12px;
+    }
+}
