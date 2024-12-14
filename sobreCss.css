@@ -1,0 +1,323 @@
+* {
+    margin: 0;
+
+    box-sizing: border-box;
+}
+
+/* Estilo geral do body */
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* HEADER: Estilização do cabeçalho */
+header {
+    background: linear-gradient(90deg, #003366, #336699);
+    color: white;
+    padding: 20px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Menu Desktop */
+.desktop-menu {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+/* Menu Desktop */
+.desktop-menu li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem; /* Aumenta o tamanho da fonte */
+    text-transform: uppercase;
+    padding: 15px 20px; /* Aumenta o padding para aumentar o tamanho do link */
+    transition: color 0.3s ease;
+}
+
+
+.desktop-menu li a:hover {
+    color: #00ffe0;
+}
+
+/* Ícone do menu mobile */
+.mobile-menu-icon {
+    display: none;
+    cursor: pointer;
+}
+
+/* Menu mobile */
+.mobile-menu {
+    list-style: none;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: #003366;
+    padding: 10px;
+    z-index: 999;
+}
+
+/* Menu mobile */
+.mobile-menu li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem; /* Aumenta o tamanho da fonte */
+    padding: 15px 20px; /* Aumenta o padding para aumentar o tamanho do link */
+    text-transform: uppercase;
+}
+
+
+.mobile-menu li a:hover {
+    background-color: #336699;
+}
+
+/* Rodapé */
+footer {
+    background-color: #111;
+    padding: 40px 20px;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+    font-size: 18px;
+    flex-wrap: wrap; /* Permite que os links se ajustem para múltiplas linhas em telas menores */
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #fff;
+    position: relative;
+    padding: 10px 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: color 0.3s ease;
+}
+
+.footer-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #2575fc;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.footer-links a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.footer-links a:hover {
+    color: #2575fc;
+}
+
+.footer-social {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap; /* Permite que os ícones sociais se ajustem em telas menores */
+}
+
+.social-icon {
+    width: 35px;
+    height: 35px;
+    background-color: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background-color: #2575fc;
+    transform: translateY(-5px);
+}
+
+.social-icon img {
+    width: 20px;
+    height: 20px;
+}
+
+.footer-content p {
+    font-size: 14px;
+    text-align: center;
+    margin: 0;
+    padding: 5px;
+}
+
+/* Mudando a cor do email especificamente */
+.footer-links a.email-link {
+    color: #e91e63; /* Cor que você deseja para o e-mail */
+}
+
+.footer-links a.email-link:hover {
+    color: #f50057; /* Cor para o hover */
+}
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+
+     /* Ajustes para dispositivos móveis e tablets */
+     footer {
+        padding: 20px 10px; /* Reduzir o padding do rodapé */
+    }
+
+    .footer-links {
+        flex-direction: column; /* Alinha os links verticalmente */
+        gap: 10px; /* Diminui o espaço entre os links */
+        font-size: 16px; /* Ajusta o tamanho da fonte */
+    }
+
+    .footer-social {
+        gap: 10px; /* Reduz o espaço entre os ícones sociais */
+    }
+
+    .social-icon {
+        width: 30px;
+        height: 30px; /* Reduz o tamanho dos ícones sociais em dispositivos menores */
+    }
+
+    .footer-content p {
+        font-size: 12px; /* Ajusta o tamanho da fonte */
+    }
+    .about-info {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-img {
+        width: 250px; /* Aumentando o tamanho da imagem */
+        height: 250px;
+        border-radius: 50%;
+        margin-bottom: 20px;
+    }
+
+    .about-text {
+        font-size: 16px;
+        margin-top: 20px;
+    }
+
+    .blog-about h2 {
+        font-size: 24px;
+    }
+
+    .blog-about p {
+        font-size: 16px;
+    }
+
+    .mobile-menu-icon {
+        display: block;
+    }
+
+    .desktop-menu {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: flex;
+    }
+}
+
+/* Seção 'Sobre' */
+.about {
+    padding: 50px 20px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.about-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about h1 {
+    font-size: 2.5rem;
+    color: #003366;
+    margin-bottom: 20px;
+}
+
+.about-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.about-img {
+    width: 250px; /* Aumentando a imagem */
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.about-text {
+    max-width: 600px;
+    font-size: 18px;
+    color: #666;
+}
+
+/* Seção 'Sobre o Blog' */
+.blog-about {
+    background-color: #f9f9f9;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.blog-about h2 {
+    font-size: 2.2rem;
+    color: #003366;
+    margin-bottom: 15px;
+}
+
+.blog-about p {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Rodapé */
+footer {
+    background-color: #111;
+    padding: 30px 20px;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+}
+
+footer p {
+    margin: 0;
+}
