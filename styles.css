@@ -1,0 +1,122 @@
+/* Resetando margens e preenchimentos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos do Header */
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+}
+
+header nav ul {
+    list-style: none;
+    text-align: center;
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Menu Interativo */
+aside {
+    background-color: #f4f4f4;
+    padding: 15px;
+    width: 200px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+}
+
+aside nav ul {
+    list-style: none;
+}
+
+aside nav ul li {
+    margin-bottom: 10px;
+}
+
+aside nav ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+/* Estilos do conteúdo principal */
+main {
+    margin-left: 220px;
+    padding: 20px;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+#post img {
+    max-width: 100%;
+    height: auto;
+}
+
+#content button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+#content #full-content {
+    margin-top: 20px;
+}
+
+/* Estilos do Sistema de Curtidas e Comentários */
+#curtir {
+    background-color: #ff6347;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+#comentarios form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+#comentarios form button {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+#lista-comentarios {
+    margin-top: 10px;
+}
+
+/* Temporizador */
+#temporizador {
+    background-color: #f9f9f9;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+}

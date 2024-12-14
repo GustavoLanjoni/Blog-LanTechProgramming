@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lantech - Programming</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#colaborador">Torna-se Colaborador</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Menu Interativo -->
+    <aside>
+        <nav>
+            <ul>
+                <li><a href="#projetos">Projetos</a></li>
+                <li><a href="#cursos">Cursos e Recursos</a></li>
+                <li><a href="#comunidade">Membros e Comunidade</a></li>
+                <li><a href="#noticias">Notícias</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Conteúdo Principal -->
+    <main>
+        <section id="home">
+            <h1>Bem-vindo ao Lantech - Programming</h1>
+            <p>Seu espaço para aprender programação e compartilhar conhecimentos.</p>
+        </section>
+
+        <!-- Postagem com Imagem -->
+        <section id="post">
+            <h2>Título do Post</h2>
+            <img src="imagem-do-post.jpg" alt="Imagem do Post">
+            <div id="content">
+                <button onclick="toggleContent()">Leia mais...</button>
+                <div id="full-content" style="display:none;">
+                    <p>Conteúdo completo do post.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sistema de Curtidas e Comentários -->
+        <section id="comentarios">
+            <button id="curtir">Curtir</button>
+            <div id="contador-curtidas">0 curtidas</div>
+            <h3>Comentários:</h3>
+            <form action="#">
+                <textarea placeholder="Deixe seu comentário"></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+            <ul id="lista-comentarios">
+                <li>Comentário de exemplo</li>
+            </ul>
+        </section>
+        
+        <!-- Seção de Projetos -->
+        <section id="projetos">
+            <h2>Projetos</h2>
+            <ul>
+                <li><a href="#">Projeto 1</a></li>
+                <li><a href="#">Projeto 2</a></li>
+            </ul>
+        </section>
+
+        <!-- Cursos e Recursos -->
+        <section id="cursos">
+            <h2>Cursos e Recursos</h2>
+            <ul>
+                <li><a href="#">Curso 1</a></li>
+                <li><a href="#">Recurso 1</a></li>
+            </ul>
+        </section>
+
+        <!-- Membros e Comunidade -->
+        <section id="comunidade">
+            <h2>Membros e Comunidade</h2>
+            <p>Entre para nossa comunidade e comece a compartilhar conhecimentos!</p>
+        </section>
+
+        <!-- Temporizador ou Contagem Regressiva -->
+        <section id="temporizador">
+            <h2>Contagem Regressiva</h2>
+            <div id="countdown"></div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Lantech - Programming</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
