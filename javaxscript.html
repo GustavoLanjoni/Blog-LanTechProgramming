@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/segurancaSCss.css">
+    <title>Java vs JavaScript: Qual a Diferença?</title>
+</head>
+<body>
+    <header class="header">
+        <div class="header-bar">
+            <a href="index.html" class="back-button" aria-label="Voltar para a página inicial">⬅ Voltar</a>
+            <h1>Java vs JavaScript: Qual a Diferença?</h1>
+        </div>
+    </header>
+
+    <main class="content">
+        <article>
+            <section>
+                <h2>O que é Java? 🛠️</h2>
+                <p>Java é uma linguagem de programação robusta, confiável e amplamente utilizada para criar aplicações escaláveis e de alta performance. Exemplos comuns de uso incluem:</p>
+                <ul>
+                    <li><strong>Apps Android:</strong> Muitas das aplicações que usamos diariamente no Google Play são desenvolvidas em Java.</li>
+                    <li><strong>Sistemas Corporativos:</strong> Grandes organizações utilizam Java para sistemas internos que demandam segurança e estabilidade, como bancos e plataformas de e-commerce.</li>
+                </ul>
+                <p>Uma característica essencial do Java é sua portabilidade. Graças à JVM (Java Virtual Machine), o código Java pode ser executado em diferentes dispositivos sem necessidade de alterações.</p>
+                <h3>Exemplo prático em Java:</h3>
+                <pre>
+                    <img src="/img/java.png" alt="Exemplo de código Java" width="100%">
+                </pre>
+                <p>Este código imprime “Hello, World!” na tela e precisa ser compilado antes da execução.</p>
+            </section>
+
+            <section>
+                <h2>E o que é JavaScript? 🌐</h2>
+                <p>JavaScript, por outro lado, é a principal ferramenta para tornar a internet interativa. Ele dá vida aos sites, permitindo que eles reajam às ações dos usuários de forma dinâmica. Alguns exemplos de aplicações incluem:</p>
+                <ul>
+                    <li><strong>Animações em sites:</strong> Botões que mudam de cor ou menus que aparecem ao passar o mouse.</li>
+                    <li><strong>Apps Web:</strong> Ferramentas como o Google Docs, que permitem edição em tempo real diretamente no navegador.</li>
+                </ul>
+                <p>Diferentemente do Java, o JavaScript é uma linguagem interpretada, o que significa que pode ser executada diretamente no navegador, sem necessidade de compilação.</p>
+                <h3>Exemplos práticos em JavaScript:</h3>
+                <h4>1. Saída simples no console:</h4>
+                <pre>
+                    <img src="/img/js.png" alt="Exemplo de código JavaScript" width="100%">
+                </pre>
+                <p>Esse código imprime “Hello, World!” no console do navegador.</p>
+
+                <h4>2. Interatividade na página:</h4>
+                <pre>
+                    <img src="/img/js2.png" alt="Interatividade em JavaScript" width="100%">
+                </pre>
+                <p>Com esse código, ao clicar em um botão na página, um alerta será exibido.</p>
+            </section>
+
+            <section>
+                <h2>Principais Diferenças Entre Java e JavaScript 🔄</h2>
+                <ul>
+                    <li><strong>Propósito:</strong>
+                        <ul>
+                            <li><strong>Java:</strong> Projetado para aplicações completas e sistemas robustos.</li>
+                            <li><strong>JavaScript:</strong> Focado em interatividade e dinamismo para a web.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Execução:</strong>
+                        <ul>
+                            <li><strong>Java:</strong> Executado em qualquer dispositivo com uma JVM.</li>
+                            <li><strong>JavaScript:</strong> Executado diretamente no navegador ou em ambientes como Node.js.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Complexidade:</strong>
+                        <ul>
+                            <li><strong>Java:</strong> Mais verboso e estruturado.</li>
+                            <li><strong>JavaScript:</strong> Mais leve e flexível.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Qual Linguagem Escolher? 🔍</h2>
+                <p>A escolha entre Java e JavaScript depende muito dos seus objetivos:</p>
+                <ul>
+                    <li><strong>Quer desenvolver para a web?</strong> JavaScript é indispensável.</li>
+                    <li><strong>Interessa em apps móveis, backend ou sistemas corporativos?</strong> Java pode ser sua melhor opção.</li>
+                </ul>
+            </section>
+        </article>
+
+        <aside class="interactions">
+            <button id="like-button" aria-label="Curtir este artigo">Curtidas: <span id="like-count">0</span> 👍</button>
+            <button id="share-button" aria-label="Compartilhar este artigo">Compartilhar 🔄</button>
+
+             <!-- Novo botão para Instagram -->
+             <a href="https://www.instagram.com/p/DC_94j4pctl/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" id="instagram-button" class="instagram-button">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1200px-Instagram_logo_2022.svg.png" alt="Instagram" />
+                Ir para o Post no Instagram
+            </a>
+
+            <div class="comments-section">
+                <h3>Comentários</h3>
+
+                <p id="write-comment-link" class="write-comment-link">Escreva um comentário</p>
+
+                <div id="comment-form" style="display:none;">
+                    <input type="text" id="username-input" placeholder="Seu nome" aria-label="Seu nome" />
+                    <textarea id="comment-input" placeholder="Escreva seu comentário..." aria-label="Seu comentário"></textarea>
+                    <button id="add-comment-button" aria-label="Enviar comentário">Enviar</button>
+                </div>
+
+                <ul id="comment-list"></ul>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 LanTech. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="/js/scriptJava.js"></script>
+</body>
+</html>

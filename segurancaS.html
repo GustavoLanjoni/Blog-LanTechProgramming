@@ -3,12 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="paginacss.css">
+    <link rel="stylesheet" href="/css/segurancaSCss.css">
     <title>Segurança e Cibersegurança</title>
+    
 </head>
 <body>
+    <header class="header">
+        <div class="header-bar">
+            <a href="index.html" class="back-button">⬅ Voltar</a>
+            <h1>Segurança da Informação e Cibersegurança <span></span></h1>
+        </div>
+    </header>
+    <main class="content">
+        <section>
+            <h2>O que é Segurança da Informação? <span>📀</span></h2>
+            <p>A Segurança da Informação consiste em proteger dados contra acessos não autorizados, uso indevido, alterações ou destruição. Práticas como o uso de senhas fortes e criptografia são fundamentais.</p>
+        </section>
+        <section>
+            <h2>O que é Cibersegurança? <span>🌐🔒</span></h2>
+            <p>A Cibersegurança é um segmento da segurança da informação, focado na proteção de sistemas, redes e programas contra ataques digitais, como ransomware e phishing.</p>
+        </section>
+        <section>
+            <h2>Principais Ameaças à Segurança da Informação <span>🚨</span></h2>
+            <ul>
+                <li><strong>Malware:</strong> Ataques como vírus, trojans e ransomware.</li>
+                <li><strong>Phishing:</strong> Golpes para obter informações confidenciais.</li>
+                <li><strong>Engenharia Social:</strong> Manipulação psicológica para roubo de dados.</li>
+                <li><strong>Ataques DDoS:</strong> Interrupção de serviços devido a sobrecarga.</li>
+                <li><strong>Vazamento de Dados:</strong> Exposição de informações confidenciais.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Práticas Essenciais de Segurança <span>🛠️</span></h2>
+            <ul>
+                <li><strong>Autenticação de Dois Fatores (2FA):</strong> Uma camada extra de segurança.</li>
+                <li><strong>Criptografia:</strong> Proteção de dados transmitidos e armazenados.</li>
+                <li><strong>Firewalls:</strong> Controle do tráfego de rede.</li>
+                <li><strong>Atualizações Regulares:</strong> Correção de vulnerabilidades.</li>
+                <li><strong>Educação e Treinamento:</strong> Conscientização sobre ameaças.</li>
+            </ul>
+        </section>
+        <section class="interactions">
+            <button id="like-button">Curtidas: <span id="like-count">0</span> 👍</button>
+            <button id="share-button">Compartilhar 🔄</button>
+            
+            <!-- Novo botão para Instagram -->
+            <a href="https://www.instagram.com/p/C8-K_V5JcAM/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" id="instagram-button" class="instagram-button">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1200px-Instagram_logo_2022.svg.png" alt="Instagram" />
+                Ir para o Post no Instagram
+            </a>
 
-
-    
+            <div class="comments-section">
+                <h3>Comentários</h3>
+                
+                <!-- Link para abrir o campo de comentário -->
+                <p id="write-comment-link" class="write-comment-link">Escreva um comentário</p>
+                
+                <!-- Formulário de Comentário -->
+                <div id="comment-form" style="display:none;">
+                    <input type="text" id="username-input" placeholder="Seu nome" />
+                    <textarea id="comment-input" placeholder="Escreva seu comentário..."></textarea>
+                    <button id="add-comment-button">Enviar</button>
+                </div>
+            
+                <!-- Lista de Comentários -->
+                <ul id="comment-list"></ul>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2024 LanTech. Todos os direitos reservados.</p>
+    </footer>
+    <script src="/js/scriptSegurança.js"></script>
 </body>
 </html>
