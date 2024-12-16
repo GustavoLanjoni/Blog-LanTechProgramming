@@ -92,6 +92,14 @@ footer {
     color: #2575fc;
 }
 
+.footer-links a.email-link {
+    color: #e91e63; /* Cor que você deseja para o e-mail */
+}
+
+.footer-links a.email-link:hover {
+    color: #f50057; /* Cor para o hover */
+}
+
 .footer-social {
     margin-top: 20px;
     display: flex;
@@ -125,16 +133,6 @@ footer {
     margin: 0;
     padding: 5px;
 }
-
-/* Mudando a cor do email especificamente */
-.footer-links a.email-link {
-    color: #e91e63; /* Cor que você deseja para o e-mail */
-}
-
-.footer-links a.email-link:hover {
-    color: #f50057; /* Cor para o hover */
-}
-
 
 /* Menu Desktop */
 .desktop-menu {
@@ -275,7 +273,6 @@ footer p {
 
 /* Responsividade */
 @media (max-width: 768px) {
-    
     .footer-content {
         flex-direction: column;
         align-items: center;
@@ -307,9 +304,8 @@ footer p {
         font-size: 12px;
         padding: 8px;
     }
-    
-    header {
 
+    header {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
