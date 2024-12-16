@@ -1,0 +1,345 @@
+/* Reset básico para garantir que a estilização seja uniforme */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo da página */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* Estilo para o cabeçalho */
+.header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    position: relative;
+}
+
+/* Ajusta a barra do cabeçalho para ter um máximo de largura e centralizar o conteúdo */
+.header-bar {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Estilo do botão de voltar, com margem para separá-lo do título */
+.back-button {
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+    margin-right: 20px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/* Ajuste no título (h1) */
+h1 {
+    font-size: 2.5em;
+    margin-top: 10px;
+    flex-grow: 1;
+    text-align: center;
+    font-weight: 600;
+}
+
+h1 span {
+    font-size: 1.5em;
+    font-weight: 400;
+}
+
+/* Estilo do conteúdo principal */
+.content {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Seções */
+section {
+    margin-bottom: 30px;
+}
+
+section h2 {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+section h2 span {
+    margin-left: 10px;
+    font-size: 1.2em;
+}
+
+/* Lista de ameaças e práticas */
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+ul li {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+/* Estilo para os botões de interação */
+.interactions {
+    text-align: center;
+    margin-top: 30px;
+}
+
+button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para os comentários */
+.comments-section {
+    margin-top: 30px;
+}
+
+.write-comment-link {
+    font-size: 1.2em;
+    color: #007BFF;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#comment-form {
+    margin-top: 20px;
+}
+
+#username-input, #comment-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#add-comment-button {
+    background-color: #28a745;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#add-comment-button:hover {
+    background-color: #218838;
+}
+
+/* Estilo para o rodapé */
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    margin-top: 40px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Estilo para as imagens */
+img {
+    max-width: 50%;  /* Ajuste o valor conforme necessário */
+    height: auto;
+    margin: 0 auto;
+    display: block;
+}
+
+/* Estilo para o botão do Instagram */
+.instagram-button {
+    display: inline-flex;
+    align-items: center;
+    background-color: #fff;
+    color: #000;
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 2px solid #E1306C;
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+/* Estilo para o ícone dentro do botão */
+.instagram-button img {
+    width: 24px;  /* Ajuste o tamanho conforme necessário */
+    height: auto;
+    margin-right: 10px;
+}
+
+/* Efeito ao passar o mouse sobre o botão */
+.instagram-button:hover {
+    background-color: #E1306C;
+    color: #fff;
+    border-color: #E1306C;
+}
+
+/* Estilo para o texto no botão */
+.instagram-button span {
+    font-size: 1em;
+}
+
+
+/* Responsividade - Ajustes para dispositivos menores */
+@media screen and (max-width: 1024px) {
+    .header-bar {
+        flex-direction: column;
+        align-items: center;
+        padding: 0 10px;
+    }
+
+    .back-button {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    h1 {
+        font-size: 2em;
+        margin-top: 10px;
+    }
+
+    .content {
+        padding: 15px;
+    }
+
+    button {
+        font-size: 1.1em;
+        padding: 8px 15px;
+    }
+
+    section h2 {
+        font-size: 1.5em;
+    }
+
+    .write-comment-link {
+        font-size: 1.1em;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header-bar {
+        padding: 0 10px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    .content {
+        padding: 10px;
+    }
+
+    .back-button {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    button {
+        font-size: 1em;
+        padding: 8px 12px;
+    }
+
+    .interactions {
+        margin-top: 20px;
+    }
+
+    section h2 {
+        font-size: 1.4em;
+    }
+
+    ul li {
+        font-size: 1.1em;
+    }
+
+    #username-input, #comment-input {
+        padding: 8px;
+    }
+
+    #add-comment-button {
+        padding: 8px 15px;
+    }
+
+    .footer {
+        padding: 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .header-bar {
+        flex-direction: column;
+        align-items: center;
+        padding: 0 10px;
+    }
+
+    .back-button {
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+
+    h1 {
+        font-size: 1.6em;
+    }
+
+    .content {
+        padding: 10px;
+    }
+
+    button {
+        font-size: 0.9em;
+        padding: 6px 10px;
+    }
+
+    .interactions {
+        margin-top: 15px;
+    }
+
+    section h2 {
+        font-size: 1.3em;
+    }
+
+    ul li {
+        font-size: 1em;
+    }
+
+    #username-input, #comment-input {
+        padding: 8px;
+    }
+
+    #add-comment-button {
+        padding: 8px 12px;
+    }
+
+    .footer {
+        padding: 10px;
+    }
+}
