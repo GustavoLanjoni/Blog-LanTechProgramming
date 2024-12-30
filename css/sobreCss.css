@@ -24,6 +24,13 @@ header {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+
+header nav {
+    display: flex;
+    align-items: center;
+}
+
+
 /* Menu Desktop */
 .desktop-menu {
     list-style: none;
@@ -31,16 +38,14 @@ header {
     gap: 20px;
 }
 
-/* Menu Desktop */
 .desktop-menu li a {
     color: white;
     text-decoration: none;
-    font-size: 1.5rem; /* Aumenta o tamanho da fonte */
-    text-transform: uppercase;
-    padding: 15px 20px; /* Aumenta o padding para aumentar o tamanho do link */
+    font-size: 1rem;
+    text-transform: capitalize; /* Torna a primeira letra maiúscula */
+    padding: 10px;
     transition: color 0.3s ease;
 }
-
 
 .desktop-menu li a:hover {
     color: #00ffe0;
@@ -64,24 +69,96 @@ header {
     width: 100%;
     background-color: #003366;
     padding: 10px;
-    z-index: 999;
 }
 
-/* Menu mobile */
 .mobile-menu li a {
     color: white;
     text-decoration: none;
-    font-size: 1.5rem; /* Aumenta o tamanho da fonte */
-    padding: 15px 20px; /* Aumenta o padding para aumentar o tamanho do link */
-    text-transform: uppercase;
+    font-size: 1.2rem;
+    padding: 10px;
+    text-transform: capitalize; /* Torna a primeira letra maiúscula */
 }
-
 
 .mobile-menu li a:hover {
     background-color: #336699;
 }
 
+
+/* Seção 'Sobre' */
+.about {
+    padding: 50px 20px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.about-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about h1 {
+    font-size: 2.5rem;
+    color: #003366;
+    margin-bottom: 20px;
+}
+
+.about-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.about-img {
+    width: 250px; /* Aumentando a imagem */
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.about-text {
+    max-width: 700px;
+    font-size: 18px;
+    color: #666;
+}
+
+/* Seção 'Sobre o Blog' */
+.blog-about {
+    background-color: #f9f9f9;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.blog-about h2 {
+    font-size: 2.2rem;
+    color: #003366;
+    margin-bottom: 15px;
+}
+
+.blog-about p {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
 /* Rodapé */
+footer {
+    background-color: #111;
+    padding: 30px 20px;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+}
+
+footer p {
+    margin: 0;
+}
+
+
 footer {
     background-color: #111;
     padding: 40px 20px;
@@ -123,7 +200,6 @@ footer {
     left: 0;
     width: 100%;
     height: 2px;
-    background: #2575fc;
     transform: scaleX(0);
     transform-origin: bottom right;
     transition: transform 0.25s ease-out;
@@ -134,9 +210,7 @@ footer {
     transform-origin: bottom left;
 }
 
-.footer-links a:hover {
-    color: #2575fc;
-}
+
 
 .footer-social {
     margin-top: 20px;
@@ -172,6 +246,8 @@ footer {
     text-align: center;
     margin: 0;
     padding: 5px;
+    text-decoration: none;
+    color: #f4f4f9;
 }
 
 /* Mudando a cor do email especificamente */
@@ -182,7 +258,6 @@ footer {
 .footer-links a.email-link:hover {
     color: #f50057; /* Cor para o hover */
 }
-
 
 /* Responsividade */
 @media (max-width: 768px) {
@@ -234,90 +309,18 @@ footer {
     .blog-about p {
         font-size: 16px;
     }
+    .desktop-menu {
+        display: none; /* Menu de desktop ocultado */
+    }
 
     .mobile-menu-icon {
-        display: block;
+        display: block; /* Ícone do menu visível em telas pequenas */
+        font-size: 2rem;
+        color: white;
     }
 
-    .desktop-menu {
-        display: none;
-    }
-
-    .mobile-menu {
-        display: flex;
+    .mobile-menu.active {
+        display: flex; /* Exibe o menu mobile */
     }
 }
 
-/* Seção 'Sobre' */
-.about {
-    padding: 50px 20px;
-    background-color: #fff;
-    text-align: center;
-}
-
-.about-content {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.about h1 {
-    font-size: 2.5rem;
-    color: #003366;
-    margin-bottom: 20px;
-}
-
-.about-info {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-}
-
-.about-img {
-    width: 250px; /* Aumentando a imagem */
-    height: 250px;
-    border-radius: 50%;
-    object-fit: cover;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-}
-
-.about-text {
-    max-width: 600px;
-    font-size: 18px;
-    color: #666;
-}
-
-/* Seção 'Sobre o Blog' */
-.blog-about {
-    background-color: #f9f9f9;
-    padding: 50px 20px;
-    text-align: center;
-}
-
-.blog-about h2 {
-    font-size: 2.2rem;
-    color: #003366;
-    margin-bottom: 15px;
-}
-
-.blog-about p {
-    font-size: 18px;
-    color: #555;
-    line-height: 1.6;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-/* Rodapé */
-footer {
-    background-color: #111;
-    padding: 30px 20px;
-    color: #fff;
-    text-align: center;
-    font-size: 14px;
-}
-
-footer p {
-    margin: 0;
-}
