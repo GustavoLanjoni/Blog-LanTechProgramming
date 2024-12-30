@@ -37,6 +37,118 @@ header nav {
     align-items: center;
 }
 
+
+/* Estilizando a seção */
+#home {
+    display: flex;
+    flex-direction: column; /* Alinha o conteúdo na vertical */
+    justify-content: center; /* Centraliza o conteúdo verticalmente */
+    align-items: center; /* Centraliza o conteúdo horizontalmente */
+    text-align: center; /* Centraliza o texto do parágrafo */
+    padding: 20px;
+    background-color: #f4f4f4; /* Cor de fundo suave */
+}
+
+/* Estilizando o título */
+#home h1 {
+    font-size: 2.5rem;
+    color: #053d7c;
+    margin-bottom: 20px;
+}
+
+/* Estilizando o parágrafo */
+#home p {
+    font-size: 1.2rem;
+    color: #555;
+    max-width: 100%; /* Define uma largura máxima para o parágrafo */
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Posts */
+#cursos {
+    padding: 20px;
+}
+
+/* Container de posts */
+.posts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    justify-content: center;
+}
+
+.post {
+    background-color: #fff;
+    text-align: left;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinha os itens à esquerda */
+    padding: 15px; /* Espaçamento interno */
+    height: 100%; /* Permite que o post ocupe toda a altura disponível */
+}
+
+.post img {
+    width: 100%;
+    height: 200px; /* Tamanho fixo para a imagem */
+    object-fit: cover; /* Preenche o quadrado sem bordas visíveis */
+    margin-bottom: 10px; /* Espaço abaixo da imagem */
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    flex-grow: 1; /* Faz com que o conteúdo ocupe o espaço restante */
+    justify-content: space-between; /* Espaça os itens para que o botão fique no final */
+}
+
+.post h3 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.post p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px; /* Espaçamento abaixo do parágrafo */
+}
+
+.data {
+    background-color: #f2f2f2;
+    color: #333;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 10px; /* Espaço entre a data e o título */
+}
+
+.data:hover {
+    background-color: #e6e6e6;
+}
+
+.saiba-mais-btn {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: flex-start; /* Alinha o botão à esquerda */
+    margin-top: auto; /* Empurra o botão para o fundo */
+}
+
+.saiba-mais-btn:hover {
+    background-color: #218838;
+}
+
+
+
+/*Rodape*/
 footer {
     background-color: #111;
     padding: 40px 0;
@@ -135,6 +247,7 @@ footer {
 }
 
 /* Menu Desktop */
+/* Menu Desktop */
 .desktop-menu {
     list-style: none;
     display: flex;
@@ -145,7 +258,7 @@ footer {
     color: white;
     text-decoration: none;
     font-size: 1rem;
-    text-transform: uppercase;
+    text-transform: capitalize; /* Torna a primeira letra maiúscula */
     padding: 10px;
     transition: color 0.3s ease;
 }
@@ -179,12 +292,13 @@ footer {
     text-decoration: none;
     font-size: 1.2rem;
     padding: 10px;
-    text-transform: uppercase;
+    text-transform: capitalize; /* Torna a primeira letra maiúscula */
 }
 
 .mobile-menu li a:hover {
     background-color: #336699;
 }
+
 
 /* Main Section */
 main {
@@ -207,56 +321,7 @@ section p {
     color: #555;
 }
 
-/* Posts */
-.posts-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    justify-content: space-between;
-    margin-top: 40px;
-}
 
-.post {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    width: 30%;
-    padding: 20px;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.post img {
-    max-width: 100%;
-    border-radius: 10px;
-    margin-bottom: 15px;
-}
-
-.post h3 {
-    font-size: 1.5rem;
-    color: #003366;
-    margin-bottom: 10px;
-}
-
-.post p {
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 20px;
-}
-
-.saiba-mais-btn {
-    background-color: #003366;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.saiba-mais-btn:hover {
-    background-color: #336699;
-}
 
 /* Rodapé */
 footer {
