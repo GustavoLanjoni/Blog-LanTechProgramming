@@ -6,3 +6,4 @@ const mobileMenu = document.querySelector('.mobile-menu');
 mobileMenuIcon.addEventListener('click', () => {
   mobileMenu.classList.toggle('active');
 });
+

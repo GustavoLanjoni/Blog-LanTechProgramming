@@ -8,7 +8,7 @@
 /* Estilo geral do body */
 body {
     font-family: 'Poppins', Arial, sans-serif;
-    background-color: #f4f4f9;
+    background-color: #e9f3ff;
     color: #333;
     line-height: 1.6;
     overflow-x: hidden;
@@ -16,7 +16,7 @@ body {
 
 /* HEADER: Estilização do cabeçalho */
 header {
-    background: linear-gradient(90deg, #003366, #336699);
+    background-color: #053d7c;
     color: white;
     padding: 20px 10px;
     display: flex;
@@ -46,7 +46,7 @@ header nav {
     align-items: center; /* Centraliza o conteúdo horizontalmente */
     text-align: center; /* Centraliza o texto do parágrafo */
     padding: 20px;
-    background-color: #f4f4f4; /* Cor de fundo suave */
+    background-color: #e9f3ff; /* Cor de fundo suave */
 }
 
 /* Estilizando o título */
@@ -334,6 +334,111 @@ footer {
 footer p {
     font-size: 1rem;
 }
+
+/* Seção de Comentários */
+.comment-section {
+    background-color: transparent;
+    padding: 30px;
+    border-radius: 8px;
+    margin: 30px auto;
+    max-width: 100%; /* Largura máxima */
+    text-align: left;
+}
+
+.comment-section h2 {
+    font-size: 2rem;
+    color: #123b7a;
+    margin-bottom: 20px;
+}
+
+/* Caixa principal */
+.comment-box {
+    background-color: #e7effa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 1200px; /* Ajuste maior para a largura */
+    margin: 0 auto; /* Centraliza a caixa */
+}
+
+/* Campos de entrada (Nome e E-mail) */
+.input-field {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #dbe5f1;
+}
+
+/* Caixa de texto */
+.comment-box textarea {
+    width: 100%;
+    height: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    resize: none;
+    background-color: #dbe5f1;
+    display: block;
+}
+
+/* Termos de Uso */
+.comment-terms-inside {
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.comment-terms-inside input {
+    cursor: pointer;
+}
+
+.comment-terms-inside a {
+    color: #123b7a;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.comment-terms-inside a:hover {
+    text-decoration: underline;
+}
+
+/* Comentários exibidos */
+.comments {
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+.comments p {
+    margin: 5px 0;
+}
+
+/* Botão Enviar */
+.send-btn {
+    background-color: #123b7a;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 26px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    display: block;
+    margin-left: auto;
+}
+
+.send-btn:hover {
+    background-color: #0f2f5c;
+}
+
 
 /* Responsividade */
 @media (max-width: 768px) {
