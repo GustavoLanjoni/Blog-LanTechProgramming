@@ -505,7 +505,7 @@ footer p {
     .mobile-menu {
         position: absolute;
         top: 80px;
-        right: 0; /* Alinha o menu à direita da tela */
+        margin-left: 50%;
         width: 50%;
         background-color: #003366;
         padding: 10px;
