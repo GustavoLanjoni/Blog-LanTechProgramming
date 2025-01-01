@@ -1,59 +1,109 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notícias - Em Breve</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .aviso-container {
-            background-color: #fff;
-            border: 2px solid #ff9800;
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        .aviso-container h1 {
-            color: #ff9800;
-            font-size: 2em;
-        }
-        .aviso-container p {
-            font-size: 1.2em;
-            color: #333;
-            margin-top: 20px;
-        }
-        .aviso-container a {
-            text-decoration: none;
-            color: #ff9800;
-            font-weight: bold;
-            margin-top: 30px;
-            display: inline-block;
-            padding: 10px 20px;
-            border: 2px solid #ff9800;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        .aviso-container a:hover {
-            background-color: #ff9800;
-            color: #fff;
-        }
-    </style>
+    <title>Notícias para Você</title>
+    <link rel="stylesheet" href="css/newsCss.css">
 </head>
+
 <body>
-    <div class="aviso-container">
-        <h1>Em Breve!</h1>
-        <p>A seção de notícias será lançada em breve. Fique atento para mais informações sobre o mercado de programação.</p>
-        <a href="index.html">Voltar para a Página Inicial</a>
-    </div>
+
+    <header class="header">
+        <div class="logo">LANTECH</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Pesquisar...">
+            <button>
+                🔍
+            </button>
+        </div>
+        <nav class="nav-menu">
+            <a href="#">Página inicial</a>
+            <a href="#">Destaques da semana</a>
+            <a href="#">Tecnologia</a>
+            <a href="#">Entretenimento</a>
+            <a href="#">Mundo</a>
+        </nav>
+        <button class="hamburger-menu" id="hamburger-menu">
+            ☰
+        </button>
+        <nav class="mobile-nav" id="mobile-nav">
+            <a href="#">Página inicial</a>
+            <a href="#">Destaques da semana</a>
+            <a href="#">Tecnologia</a>
+            <a href="#">Entretenimento</a>
+            <a href="#">Mundo</a>
+        </nav>
+    </header>
+
+
+    <section class="news-container">
+        <h1>Notícias para você</h1>
+        <p class="date">quarta-feira, 1 de janeiro</p>
+
+        <div class="content">
+            <!-- Principais Notícias -->
+            <div class="main-news">
+                <h2>Principais notícias</h2>
+                <div class="news-card">
+                    <img src="https://via.placeholder.com/150" alt="Imagem notícia">
+                    <div class="news-details">
+                        <h3>Notícias do mundo</h3>
+                        <p><strong>"Inteligência artificial e automação: a correção da nova era"</strong></p>
+                        <p>1 hora atrás</p>
+                        <a href="#">Ver notícia completa</a>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <img src="https://via.placeholder.com/150" alt="Imagem notícia">
+                    <div class="news-details">
+                        <h3>Notícias do mundo</h3>
+                        <p><strong>"Como a tecnologia avançada está transformando o mundo em 2025"</strong></p>
+                        <p>1 hora atrás</p>
+                        <a href="#">Ver notícia completa</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notícias Locais -->
+            <aside class="local-news">
+                <h2>Notícias locais</h2>
+                <div class="buttons">
+                    <button>Votu</button>
+                    <button>Críticas</button>
+                </div>
+                <div class="local-news-card">
+                    <img src="https://via.placeholder.com/50" alt="Imagem notícia local">
+                    <p><strong>A inteligência...</strong></p>
+                    <p>Lorem ipsum dolor sit amet...</p>
+                    <p>1 hora atrás</p>
+                </div>
+                <div class="local-news-card">
+                    <img src="https://via.placeholder.com/50" alt="Imagem notícia local">
+                    <p><strong>A inteligência...</strong></p>
+                    <p>Lorem ipsum dolor sit amet...</p>
+                    <p>1 hora atrás</p>
+                </div>
+                <div class="local-news-card">
+                    <img src="https://via.placeholder.com/50" alt="Imagem notícia local">
+                    <p><strong>A inteligência...</strong></p>
+                    <p>Lorem ipsum dolor sit amet...</p>
+                    <p>1 hora atrás</p>
+                </div>
+            </aside>
+        </div>
+    </section>
+    <script>
+        // Menu Hambúrguer
+        const hamburgerMenu = document.getElementById('hamburger-menu');
+        const mobileNav = document.getElementById('mobile-nav');
+
+        hamburgerMenu.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+        });
+
+    </script>
 </body>
+
 </html>

@@ -1,0 +1,362 @@
+/* Reset */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #e7effa;
+}
+
+/* Container Principal */
+.news-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Título Principal */
+.news-container h1 {
+    font-size: 2rem;
+    color: #123b7a;
+}
+
+.date {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Layout */
+.content {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+/* Principais Notícias */
+.main-news {
+    flex: 2;
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.main-news h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #123b7a;
+}
+
+.news-card {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+}
+
+.news-card img {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.news-details h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.news-details p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.news-details a {
+    color: #123b7a;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.news-details a:hover {
+    text-decoration: underline;
+}
+
+/* Notícias Locais */
+.local-news {
+    flex: 1;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.local-news h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #123b7a;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.buttons button {
+    flex: 1;
+    padding: 5px 10px;
+    border: none;
+    background: #123b7a;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buttons button:hover {
+    background: #0f2f5c;
+}
+
+.local-news-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.local-news-card img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.local-news-card p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Header */
+.header {
+    background-color: #003366; /* Azul escuro */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 20px;
+    color: white;
+}
+
+/* Logo */
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    align-self: flex-start;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+/* Barra de Pesquisa */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 25px;
+    overflow: hidden;
+    width: 60%;
+    height: 30px;
+    max-width: 600px;
+    margin-bottom: 10px;
+    margin-top: -40px;
+}
+
+.search-bar input {
+    border: none;
+    padding: 8px 15px;
+    flex: 1;
+    outline: none;
+    font-size: 1rem;
+}
+
+.search-bar button {
+    background: none;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+/* Menu de Navegação */
+.nav-menu {
+    display: flex;
+    justify-content: center;
+    gap: 157px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.nav-menu a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.nav-menu a:hover {
+    text-decoration: underline;
+}
+
+/* Menu Desktop */
+.nav-menu {
+    display: flex;
+    gap: 159px;
+    font-size: 2.5rem;
+}
+
+.nav-menu a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.nav-menu a:hover {
+    text-decoration: underline;
+}
+
+/* Menu Hambúrguer */
+.hamburger-menu {
+    display: none;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* Menu Mobile */
+.mobile-nav {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #003366;
+    width: 200px;
+    border-radius: 5px;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    z-index: 1000;
+}
+
+.mobile-nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-bottom: 1px solid #444;
+}
+
+.mobile-nav a:last-child {
+    border-bottom: none;
+}
+
+/* Até 768px (Tablets e Celulares) */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 15px;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .search-bar {
+        width: 90%;
+        max-width: none;
+        margin: 10px 0;
+    }
+
+    .search-bar input {
+        font-size: 0.9rem;
+    }
+
+    .nav-menu {
+        display: none; /* Esconder menu padrão */
+    }
+
+    /* Menu Hambúrguer ajustado para o lado direito */
+    .hamburger-menu {
+        display: block;
+        font-size: 1.8rem;
+        margin-top: -15px;
+        position: absolute;
+        right: 20px; /* Ajusta o menu hambúrguer à direita */
+        top: 15px;  /* Alinha com a parte superior da tela */
+    }
+
+    .mobile-nav {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        background-color: #003366;
+        position: absolute;
+        top: 108px;
+        right: 0;
+        z-index: 1000;
+        padding: 15px 0;
+        border-top: 1px solid #444;
+    }
+
+    .mobile-nav.active {
+        display: flex;
+    }
+
+    .mobile-nav a {
+        text-align: center;
+        padding: 10px;
+        font-size: 0.9rem;
+        color: #fff;
+        border-bottom: 1px solid #444;
+    }
+
+    .mobile-nav a:last-child {
+        border-bottom: none;
+    }
+}
+
+/* Até 480px (Celulares Pequenos) */
+@media (max-width: 480px) {
+    .header {
+        padding: 10px;
+    }
+
+    .logo {
+        font-size: 1rem;
+    }
+
+    .search-bar {
+        width: 100%;
+    }
+
+    .search-bar input {
+        font-size: 0.8rem;
+        padding: 5px;
+    }
+
+    .search-bar button {
+        font-size: 0.8rem;
+        padding: 5px;
+    }
+
+    .hamburger-menu {
+        font-size: 1.5rem;
+        right: 15px; /* Ajusta para o lado direito */
+    }
+
+    .mobile-nav a {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+}
