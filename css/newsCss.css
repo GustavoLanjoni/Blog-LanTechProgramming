@@ -258,6 +258,9 @@ body {
     border-bottom: none;
 }
 
+
+
+
 /* Até 768px (Tablets e Celulares) */
 @media (max-width: 768px) {
     .header {
@@ -359,4 +362,6 @@ body {
         font-size: 0.8rem;
         padding: 8px;
     }
+
+    
 }
