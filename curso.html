@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos</title>
+    <link rel="stylesheet" href="css/cursos.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <!-- Menu Hambúrguer -->
+    <header>
+        <div class="menu-hamburguer" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+       
+        <h1>Cursos Disponíveis - LanTech</h1>
+    </header>
+
+    <!-- Botões de Filtro -->
+    <section class="filtros">
+        <button class="btn-filtro" data-filter="todos">Todos</button>
+        <button class="btn-filtro" data-filter="marketing">Marketing</button>
+        <button class="btn-filtro" data-filter="design">Design</button>
+        <button class="btn-filtro" data-filter="programacao">Programação</button>
+    </section>
+
+    <!-- Listagem de Cursos -->
+    <section class="cursos">
+        <div class="curso" data-category="marketing">
+            <img src="img/marketing.jpg" alt="Marketing Digital">
+            <h2>Curso de Marketing Digital</h2>
+            <p>Aprenda estratégias modernas para impulsionar seus negócios online.</p>
+            <p><strong>Valor:</strong> R$ 299,00</p>
+            <a href="#" class="btn-comprar">Comprar</a>
+        </div>
+
+        <div class="curso" data-category="design">
+            <img src="img/design.jpg" alt="Design Gráfico">
+            <h2>Curso de Design Gráfico</h2>
+            <p>Domine ferramentas como Photoshop e Illustrator para criar projetos incríveis.</p>
+            <p><strong>Valor:</strong> R$ 399,00</p>
+            <a href="#" class="btn-comprar">Comprar</a>
+        </div>
+
+        <div class="curso" data-category="programacao">
+            <img src="img/Imagem do WhatsApp de 2024-11-28 à(s) 13.17.56_5f9acd75.jpg" alt="Java Completo">
+            <h2>Curso de Java Completo</h2>
+            <p>Aprenda Java do zero ao avançado, desenvolvendo aplicações robustas.</p>
+            <p><strong>Valor:</strong> R$ 499,00</p>
+            <a href="#" class="btn-comprar">Comprar</a>
+        </div>
+
+        <div class="curso" data-category="programacao">
+            <img src="img/python.jpg" alt="Python Básico">
+            <h2>Curso de Python Básico</h2>
+            <p>Entre no mundo da programação com Python de forma simples e prática.</p>
+            <p><strong>Valor:</strong> R$ 299,00</p>
+            <a href="#" class="btn-comprar">Comprar</a>
+        </div>
+
+        <div class="curso" data-category="marketing">
+            <img src="img/seo.jpg" alt="SEO Avançado">
+            <h2>Curso de SEO Avançado</h2>
+            <p>Otimize seu site para mecanismos de busca e aumente o tráfego orgânico.</p>
+            <p><strong>Valor:</strong> R$ 199,00</p>
+            <a href="#" class="btn-comprar">Comprar</a>
+        </div>
+    </section>
+
+    <script src="js/cursos.js"></script>
+</body>
+</html>
