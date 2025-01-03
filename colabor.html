@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colaboradores - Blog</title>
+    <link rel="stylesheet" href="css/colaborador.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <!-- Menu Hamburguer -->
+    <nav class="navbar">
+        <div class="logo">LanTech</div>
+        <div class="menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="menu" id="menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="noticia.html">News</a></li>
+            <li><a href="curso.html">Cursos</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="contato.html">Contato</a></li>
+        </ul>
+    </nav>
+
+    <!-- Filtro de Colaboradores -->
+    <section class="filter-section">
+        <input type="text" id="search" placeholder="Buscar por nome...">
+        <select id="category">
+            <option value="">Todas as Categorias</option>
+            <option value="editor">Editores</option>
+            <option value="redator">Redatores</option>
+            <option value="colunista">Colunistas</option>
+        </select>
+    </section>
+
+    <!-- Colaboradores -->
+    <section class="collaborators">
+        <div class="collaborator-card" data-category="editor">
+            <img src="img/Imagem do WhatsApp de 2024-11-28 à(s) 13.17.56_5f9acd75.jpg" alt="Autor 1">
+            <h3>Gustavo Lanjoni</h3>
+            <p>Programador</p>
+            <p>Especialista em tecnologia e inovação.</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/gustavolanjoni/"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.tiktok.com/@gustavo_lanjoni"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.instagram.com/devlanjoni/"><i class="fab fa-instagram"></i></a>
+                <a href="https://github.com/GustavoLanjoni"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+
+        <div class="collaborator-card" data-category="colunista">
+            <img src="img/autor3.jpg" alt="Autor 3">
+            <h3>Milene Angelo</h3>
+            <p>Designer</p>
+            <p>Amante de conteúdo criativo e storytelling.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Chamada para Ação -->
+    <section class="cta">
+        <h2>Quer Fazer Parte da Nossa Equipe?</h2>
+        <p>Envie uma mensagem e faça parte do nosso time incrível de colaboradores.</p>
+        <a href="tornaseColaborador.html" target="_blank" class="cta-button">Quero Colaborar</a>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+        <p>&copy; 2024 BlogTech. Todos os direitos reservados.</p>
+        <a href="sobre.html">Sobre Nós</a>
+        <a href="">Política de Privacidade</a>
+    </footer>
+
+    <script>
+        // Menu Hamburguer
+        const menuToggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('menu');
+
+        menuToggle.addEventListener('click', () => {
+            menu.classList.toggle('active');
+        });
+
+    </script>
+    <script src="/js/colaborador.js"></script>
+</body>
+
+</html>

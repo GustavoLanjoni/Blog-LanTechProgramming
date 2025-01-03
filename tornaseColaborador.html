@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torne-se um Colaborador</title>
+    <link rel="stylesheet" href="css/tonasecolaboradorCss.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <!-- Seção Torne-se um Colaborador -->
+    <section class="colaborador">
+        <h1>Torne-se um Colaborador</h1>
+        <p>Preencha o formulário abaixo para se juntar à nossa equipe incrível!</p>
+
+        <form action="#" method="POST" class="form-colaborador" id="formColaborador">
+            <label for="nome">Nome Completo:</label>
+            <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+
+            <label for="cargo">Escolha sua área de interesse:</label>
+            <select id="cargo" name="cargo" required>
+                <option value="" disabled selected>Selecione uma opção</option>
+                <option value="Programador">Programador</option>
+                <option value="Designer">Designer</option>
+                <option value="Social Media">Social Media</option>
+                <option value="Escritor">Escritor de notícias/Blog</option>
+                <option value="Outros">Outros</option>
+            </select>
+
+            <label for="motivo">Motivo para se tornar colaborador:</label>
+            <textarea id="motivo" name="motivo" placeholder="Por que você quer se tornar colaborador?"
+                required></textarea>
+
+            <label for="escolha">Por que devemos te escolher?</label>
+            <textarea id="escolha" name="escolha" placeholder="Explique por que você seria uma boa escolha"
+                required></textarea>
+
+            <button type="submit" class="btn-enviar">Enviar</button>
+        </form>
+    </section>
+
+    <!-- Modal de Confirmação -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <h2>Email Enviado!</h2>
+            <p>Seu formulário foi enviado com sucesso. Entraremos em contato em breve.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Seleção de elementos
+        const form = document.getElementById('formColaborador');
+        const modal = document.getElementById('modal');
+        const closeModal = document.getElementById('closeModal');
+
+        // Evento de envio do formulário
+        form.addEventListener('submit', function (event) {
+            event.preventDefault(); // Evita o envio padrão do formulário
+
+            // Exibir o modal
+            modal.style.display = 'flex';
+
+            // Resetar o formulário
+            form.reset();
+        });
+
+        // Fechar o modal ao clicar no botão de fechar
+        closeModal.addEventListener('click', function () {
+            modal.style.display = 'none';
+        });
+
+        // Fechar o modal ao clicar fora do conteúdo
+        window.addEventListener('click', function (event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+
+</html>
