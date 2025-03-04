@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <!-- Link para Font Awesome (se desejar ícones) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
 
     <main class="post-form-container">
@@ -26,16 +28,17 @@
             <select id="postCategory" name="postCategory" required>
                 <option value="" disabled selected>Selecione a categoria</option>
                 <option value="destaque-da-semana">Destaque da Semana</option>
-                <option value="tecnologia">Tecnologia</option>
-                <option value="entretenimento">Entretenimento</option>
+                <option value="tecnologia">Tecnologia e Entretenimento</option>
                 <option value="mundo">Mundo</option>
             </select>
 
             <label for="postSubtitle">Subtítulo</label>
-            <input type="text" id="postSubtitle" name="postSubtitle" placeholder="Digite o subtítulo da postagem" required>
+            <input type="text" id="postSubtitle" name="postSubtitle" placeholder="Digite o subtítulo da postagem"
+                required>
 
             <label for="postContent">Conteúdo Completo</label>
-            <textarea id="postContent" name="postContent" rows="8" placeholder="Digite o conteúdo completo do post..." required></textarea>
+            <textarea id="postContent" name="postContent" rows="8" placeholder="Digite o conteúdo completo do post..."
+                required></textarea>
 
             <button type="submit">Publicar Postagem</button>
         </form>
@@ -51,7 +54,7 @@
             const file = document.getElementById("postImage").files[0];
             const reader = new FileReader();
 
-            reader.onloadend = function() {
+            reader.onloadend = function () {
                 const preview = document.getElementById("imagePreview");
                 preview.src = reader.result;
                 preview.style.display = "block"; // Exibir a imagem de pré-visualização
@@ -66,12 +69,119 @@
         }
 
         // Função para lidar com o envio do formulário
-        document.getElementById("createPostForm").addEventListener("submit", function(event) {
+        document.getElementById("createPostForm").addEventListener("submit", function (event) {
             event.preventDefault();
+
+            // Obter os valores do formulário
+            const title = document.getElementById("postTitle").value;
+            const subtitle = document.getElementById("postSubtitle").value;
+            const content = document.getElementById("postContent").value;
+            const category = document.getElementById("postCategory").value;
+
+            // Verificar se a imagem foi carregada e obter o src
+            const image = document.getElementById("imagePreview").src;
+
+            // Criando um objeto para a postagem
+            const post = {
+                title: title,
+                subtitle: subtitle,
+                content: content,
+                category: category,
+                image: image // A imagem é salva em Base64
+            };
+
+            // Obter as postagens existentes para a categoria (se houver)
+            let posts = JSON.parse(localStorage.getItem(category)) || [];
+
+            // Adicionar a nova postagem à lista
+            posts.push(post);
+
+            // Salvar de volta no LocalStorage
+            localStorage.setItem(category, JSON.stringify(posts));
+
+            // Exibir uma mensagem de sucesso
             alert("Postagem criada com sucesso!");
-            // Aqui você pode adicionar a lógica para enviar os dados para o servidor ou banco de dados
+
+            // Limpar o formulário após o envio
+            document.getElementById("createPostForm").reset();
+            document.getElementById("imagePreview").style.display = "none";
         });
     </script>
 
+    <script>
+        // Função para exibir a pré-visualização da imagem antes de enviar o formulário
+        function previewImage() {
+            const file = document.getElementById("postImage").files[0];
+            const reader = new FileReader();
+
+            reader.onloadend = function () {
+                const preview = document.getElementById("imagePreview");
+                preview.src = reader.result;
+                preview.style.display = "block"; // Exibir a imagem de pré-visualização
+                preview.style.width = "250px"; // Ajustando o tamanho da imagem
+                preview.style.height = "250px"; // Ajustando a altura
+                preview.style.objectFit = "cover"; // Mantém o aspecto da imagem
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Função para obter a data e hora atual formatada
+        function getFormattedDateTime() {
+            const now = new Date();
+            const day = String(now.getDate()).padStart(2, '0');
+            const month = String(now.getMonth() + 1).padStart(2, '0'); // Mês começa em 0
+            const year = now.getFullYear();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+
+            return `${day}/${month}/${year} ${hours}:${minutes}`;
+        }
+
+        // Função para lidar com o envio do formulário
+        document.getElementById("createPostForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Obter os valores do formulário
+            const title = document.getElementById("postTitle").value;
+            const subtitle = document.getElementById("postSubtitle").value;
+            const content = document.getElementById("postContent").value;
+            const category = document.getElementById("postCategory").value;
+
+            // Verificar se a imagem foi carregada e obter o src
+            const image = document.getElementById("imagePreview").src;
+
+            // Criar um objeto para a postagem
+            const post = {
+                title: title,
+                subtitle: subtitle,
+                content: content,
+                category: category,
+                image: image, // A imagem é salva em Base64
+                dateTime: getFormattedDateTime() // Adicionando data e hora
+            };
+
+            // Obter as postagens existentes para a categoria (se houver)
+            let posts = JSON.parse(localStorage.getItem(category)) || [];
+
+            // Adicionar a nova postagem à lista
+            posts.push(post);
+
+            // Salvar de volta no LocalStorage
+            localStorage.setItem(category, JSON.stringify(posts));
+
+            // Exibir uma mensagem de sucesso
+            alert("Postagem criada com sucesso em " + post.dateTime);
+
+            // Limpar o formulário após o envio
+            document.getElementById("createPostForm").reset();
+            document.getElementById("imagePreview").style.display = "none";
+        });
+    </script>
+
+
 </body>
+
 </html>
