@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Postagem - Blog</title>
+    <link rel="stylesheet" href="css/post.css">
+    <!-- Link para Font Awesome (se desejar ícones) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <main class="post-form-container">
+        <form id="createPostForm" enctype="multipart/form-data">
+            <label for="postTitle">Título da Postagem</label>
+            <input type="text" id="postTitle" name="postTitle" placeholder="Digite o título da postagem" required>
+
+            <label for="postImage">Imagem de Capa</label>
+            <input type="file" id="postImage" name="postImage" accept="image/*" onchange="previewImage()" required>
+
+            <div id="imagePreviewContainer" class="image-preview-container">
+                <img id="imagePreview" alt="Pré-visualização da imagem" style="display: none;">
+            </div>
+
+            <label for="postCategory">Categoria</label>
+            <select id="postCategory" name="postCategory" required>
+                <option value="" disabled selected>Selecione a categoria</option>
+                <option value="destaque-da-semana">Destaque da Semana</option>
+                <option value="tecnologia">Tecnologia</option>
+                <option value="entretenimento">Entretenimento</option>
+                <option value="mundo">Mundo</option>
+            </select>
+
+            <label for="postSubtitle">Subtítulo</label>
+            <input type="text" id="postSubtitle" name="postSubtitle" placeholder="Digite o subtítulo da postagem" required>
+
+            <label for="postContent">Conteúdo Completo</label>
+            <textarea id="postContent" name="postContent" rows="8" placeholder="Digite o conteúdo completo do post..." required></textarea>
+
+            <button type="submit">Publicar Postagem</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Blog. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Função para exibir a pré-visualização da imagem antes de enviar o formulário
+        function previewImage() {
+            const file = document.getElementById("postImage").files[0];
+            const reader = new FileReader();
+
+            reader.onloadend = function() {
+                const preview = document.getElementById("imagePreview");
+                preview.src = reader.result;
+                preview.style.display = "block"; // Exibir a imagem de pré-visualização
+                preview.style.width = "250px"; // Ajustando o tamanho da imagem
+                preview.style.height = "250px"; // Ajustando a altura
+                preview.style.objectFit = "cover"; // Mantém o aspecto da imagem
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Função para lidar com o envio do formulário
+        document.getElementById("createPostForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            alert("Postagem criada com sucesso!");
+            // Aqui você pode adicionar a lógica para enviar os dados para o servidor ou banco de dados
+        });
+    </script>
+
+</body>
+</html>
