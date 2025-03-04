@@ -22,8 +22,7 @@
         <nav class="nav-menu">
             <a href="index.html">Página inicial</a>
             <a href="destaqueSemana.html">Destaques da semana</a>
-            <a href="tecnologia.html">Tecnologia</a>
-            <a href="entretenimento.html">Entretenimento</a>
+            <a href="tecnologia.html">Tecnologia e entretenimento</a>
             <a href="mundo.html">Mundo</a>
         </nav>
         <button class="hamburger-menu" id="hamburger-menu">
@@ -97,6 +96,43 @@
             </aside>
         </div>
     </section>
+
+    <!--Script de data-->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Seleciona o elemento que mostrará a data
+            const dateElement = document.querySelector(".date");
+
+            // Obtém a data atual
+            const hoje = new Date();
+
+            // Array com os nomes dos dias da semana
+            const diasSemana = [
+                "domingo", "segunda-feira", "terça-feira", "quarta-feira",
+                "quinta-feira", "sexta-feira", "sábado"
+            ];
+
+            // Array com os nomes dos meses
+            const mesesAno = [
+                "janeiro", "fevereiro", "março", "abril", "maio", "junho",
+                "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"
+            ];
+
+            // Obtém os valores necessários
+            const diaSemana = diasSemana[hoje.getDay()]; // Retorna o nome do dia da semana
+            const dia = hoje.getDate(); // Retorna o dia do mês
+            const mes = mesesAno[hoje.getMonth()]; // Retorna o nome do mês
+            const ano = hoje.getFullYear(); // Retorna o ano
+
+            // Formata a data no estilo "quarta-feira, 1 de janeiro de 2025"
+            const dataFormatada = `${diaSemana}, ${dia} de ${mes} de ${ano}`;
+
+            // Atualiza o conteúdo do elemento <p class="date">
+            dateElement.textContent = dataFormatada;
+        });
+
+    </script>
+
     <script>
         // Menu Hambúrguer
         const hamburgerMenu = document.getElementById('hamburger-menu');
@@ -107,7 +143,6 @@
         });
 
     </script>
-    <link rel="stylesheet" href="/js/tempo.js">
 </body>
 
 </html>
