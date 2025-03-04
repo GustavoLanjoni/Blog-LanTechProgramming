@@ -16,8 +16,8 @@
         <div class="logo">LANTECH</div>
         <nav class="nav-menu">
             <a href="noticia.html">Noticia</a>
-            <a href="destaqueSemana.html">Destaque semana</a>
-            <a href="tecnologiaEntreterimento.html">Tecnologia e Entretenimento</a>
+            <a href="destaqueSemana.html">Destaques da semana</a>
+            <a href="mundo.html">Mundo</a>
         </nav>
     </header>
 
@@ -53,7 +53,7 @@
             dateElement.textContent = dataFormatada;
 
             // Carrega postagens do localStorage
-            const posts = JSON.parse(localStorage.getItem('mundo')) || [];
+            const posts = JSON.parse(localStorage.getItem('tecnologia')) || [];
             const postListContainer = document.getElementById('postListContainer');
 
             if (posts.length === 0) {
@@ -86,7 +86,7 @@
         });
 
         function viewNews(index) {
-            const posts = JSON.parse(localStorage.getItem('mundo')) || [];
+            const posts = JSON.parse(localStorage.getItem('tecnologia')) || [];
             const post = posts[index];
 
             // Exibe o modal com o conteúdo completo da notícia
@@ -100,7 +100,7 @@
 
         // Função de Compartilhar
         function shareNews(index) {
-            const posts = JSON.parse(localStorage.getItem('mundo')) || [];
+            const posts = JSON.parse(localStorage.getItem('tecnologia')) || [];
             const post = posts[index];
             const postUrl = post.url || '';  // Verifique se o post tem um URL associado
 
@@ -124,7 +124,7 @@
 
         // Função de Curtir
         function likeNews(index) {
-            const posts = JSON.parse(localStorage.getItem('mundo')) || [];
+            const posts = JSON.parse(localStorage.getItem('tecnologia')) || [];
             const post = posts[index];
 
             // Se não tiver a propriedade "likes", inicialize com 0
@@ -137,7 +137,7 @@
 
             // Atualiza o número de curtidas no localStorage
             posts[index] = post;
-            localStorage.setItem('mundo', JSON.stringify(posts));
+            localStorage.setItem('tecnologia', JSON.stringify(posts));
 
             // Atualiza a quantidade de curtidas ao lado do botão
             document.getElementById(`likeCount-${index}`).textContent = post.likes;
@@ -149,12 +149,12 @@
         function commentNews(index) {
             const comment = prompt("Deixe seu comentário:");
             if (comment) {
-                const posts = JSON.parse(localStorage.getItem('mundo')) || [];
+                const posts = JSON.parse(localStorage.getItem('tecnologia')) || [];
                 const post = posts[index];
                 const comments = post.comments || [];
                 comments.push(comment);
                 post.comments = comments;
-                localStorage.setItem('mundo', JSON.stringify(posts));
+                localStorage.setItem('tecnologia', JSON.stringify(posts));
                 alert(`Comentário adicionado à notícia: ${post.title}`);
             }
         }
