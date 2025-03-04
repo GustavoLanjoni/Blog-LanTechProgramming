@@ -3,79 +3,85 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    background-color: #f4f4f4;
+    background-color: #f7f7f7;
     color: #333;
     line-height: 1.6;
 }
 
 /* Cabeçalho */
 .header {
-    background: #222;
+    background-color: #343a40;
     color: #fff;
-    padding: 15px 20px;
+    padding: 10px 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .header .logo {
     font-size: 24px;
     font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 .nav-menu {
-    margin-top: 10px;
+    display: flex;
+    gap: 15px;
 }
 
 .nav-menu a {
     color: #fff;
     text-decoration: none;
-    padding: 10px 20px;
-    margin: 0 15px;
+    padding: 6px 12px;
     border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
 .nav-menu a:hover {
-    background-color: #444;
+    background-color: #495057;
 }
 
 /* Container de notícias */
 .news-container {
-    width: 80%;
-    margin: 30px auto;
-    padding: 20px;
+    width: 85%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 15px;
     background-color: #fff;
-    border-radius: 10px;
+    border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .news-container h1 {
     text-align: center;
-    color: #333;
-    font-size: 2.5em;
+    font-size: 2.4em;
     margin-bottom: 20px;
+    color: #333;
+    font-weight: 600;
 }
 
 .news-container .date {
     text-align: center;
-    font-size: 1.2em;
-    color: #777;
-    margin-bottom: 30px;
+    font-size: 1.1em;
+    color: #6c757d;
+    margin-bottom: 20px;
 }
 
 /* Cartões de notícias */
 .news-card {
     display: flex;
-    justify-content: space-between;
+    gap: 15px;
     margin-bottom: 20px;
-    padding: 20px;
+    padding: 10px;
     background-color: #fafafa;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
 }
 
@@ -84,55 +90,175 @@ body {
 }
 
 .news-card img {
-    width: 250px;
+    width: 200px;
     height: 150px;
     object-fit: cover;
     border-radius: 8px;
-    margin-right: 20px;
 }
 
 .news-card .news-details {
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 }
 
 .news-card h3 {
-    font-size: 1.8em;
+    font-size: 1.5em;
     color: #333;
+    font-weight: 600;
     margin-bottom: 10px;
 }
 
 .news-card p {
-    font-size: 1em;
+    font-size: 0.95em;
     color: #555;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
 .news-card button {
-    background-color: #333;
+    background-color: #007bff;
     color: #fff;
     border: none;
-    padding: 10px 20px;
+    padding: 8px 15px;
     font-size: 1em;
     cursor: pointer;
     border-radius: 5px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .news-card button:hover {
-    background-color: #444;
+    background-color: #0056b3;
+    transform: scale(1.05);
 }
 
 /* Rodapé */
 footer {
-    background-color: #333;
+    background-color: #343a40;
     color: #fff;
-    padding: 15px 0;
+    padding: 20px 0;
     text-align: center;
-    margin-top: 40px;
+    margin-top: 30px;
+    font-size: 1em;
 }
+
+footer p {
+    margin: 0;
+}
+
+/* Estilos para o modal */
+.news-modal {
+    display: none; /* Inicialmente escondido */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
+    overflow: auto; /* Permite rolar o conteúdo do modal caso seja necessário */
+}
+
+/* Estilos da caixa do modal */
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    width: 90%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Estilos para o título da notícia */
+#modalTitle {
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    line-height: 1.2;
+    white-space: pre-wrap; /* Garante que o texto do título quebre a linha quando necessário */
+    word-wrap: break-word; /* Quebra palavras longas que não cabem na linha */
+}
+
+/* Estilos para o subtítulo */
+#modalSubtitle {
+    font-size: 21px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #666;
+    line-height: 1.5;
+    white-space: pre-wrap; /* Garante que o texto do subtítulo quebre a linha quando necessário */
+    word-wrap: break-word; /* Quebra palavras longas que não cabem na linha */
+    border-bottom: 1px solid #ddd; /* Linha entre o subtítulo e o conteúdo */
+    padding-bottom: 10px; /* Espaçamento entre a linha e o conteúdo abaixo */
+}
+
+/* Estilos para o conteúdo da notícia */
+#modalContent {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    white-space: pre-wrap; /* Garante que o texto do conteúdo quebre a linha quando necessário */
+    word-wrap: break-word; /* Quebra palavras longas que não cabem na linha */
+    max-height: 600px; /* Limita a altura do conteúdo */
+    overflow-y: auto; /* Adiciona barra de rolagem se o conteúdo exceder a altura */
+}
+
+/* Botão de fechar (X) */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+/* Estilo do botão de fechar quando o mouse passa por cima */
+.close:hover,
+.close:focus {
+    color: #333;
+    text-decoration: none;
+}
+
+
+/* Estilos para os ícones de ação */
+.action-icons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-around;
+    font-size: 18px;
+}
+
+.action-icons button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #555;
+    font-size: 16px;
+}
+
+
+
+
+/* Responsividade: adapta o modal para telas menores */
+@media (max-width: 600px) {
+    .modal-content {
+        width: 95%; /* Modal ocupa mais espaço em telas pequenas */
+    }
+
+    #modalTitle {
+        font-size: 20px; /* Tamanho reduzido para o título */
+    }
+
+    #modalSubtitle {
+        font-size: 16px; /* Tamanho reduzido para o subtítulo */
+    }
+
+    #modalContent {
+        font-size: 14px; /* Tamanho reduzido para o conteúdo */
+    }
+}
+
 
 /* Responsividade */
 @media (max-width: 768px) {
@@ -143,26 +269,30 @@ footer {
     }
 
     .news-card img {
-        margin-bottom: 20px;
+        margin-bottom: 15px;
     }
 
     .news-container {
-        width: 90%;
+        width: 95%;
         padding: 15px;
     }
 
     .header .logo {
-        font-size: 1.8em;
+        font-size: 22px;
+    }
+
+    .nav-menu {
+        gap: 12px;
     }
 
     .nav-menu a {
-        padding: 8px 15px;
+        padding: 5px 10px;
     }
 }
 
 @media (max-width: 480px) {
     .header .logo {
-        font-size: 1.5em;
+        font-size: 18px;
     }
 
     .news-container h1 {
@@ -174,10 +304,14 @@ footer {
     }
 
     .news-card h3 {
-        font-size: 1.6em;
+        font-size: 1.4em;
     }
 
     .news-card p {
+        font-size: 0.9em;
+    }
+
+    footer p {
         font-size: 0.9em;
     }
 }
