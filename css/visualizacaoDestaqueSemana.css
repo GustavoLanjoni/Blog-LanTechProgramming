@@ -1,0 +1,77 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    position: relative; /* Necessário para posicionar o botão "Voltar" */
+}
+
+.nav-menu {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.nav-menu a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+}
+
+/* Melhorando a posição do botão "Voltar" */
+.back-btn {
+    position: absolute;
+    left: 15px; /* Posicionando o botão à esquerda */
+    top: 10%; /* Centralizando o botão verticalmente */
+    transform: translateY(-50%); /* Ajusta o posicionamento vertical */
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 10; /* Garante que o botão fique visível acima dos outros elementos */
+}
+
+.back-btn:hover {
+    background-color: #0056b3;
+}
+
+.news-detail-container {
+    padding: 20px;
+    background-color: white;
+    max-width: 800px;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    word-wrap: break-word;
+}
+
+.news-detail-container h1 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    word-wrap: break-word;
+}
+
+.news-detail-container p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    margin-top: 40px;
+}
