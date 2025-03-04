@@ -50,17 +50,29 @@
                 return;
             }
 
-            postListContainer.innerHTML = posts.map(post => `
+            postListContainer.innerHTML = posts.map((post, index) => `
                 <div class="news-card">
                     <img src="${post.image}" alt="${post.title}">
                     <div class="news-details">
                         <h3>${post.title}</h3>
                         <p><strong>${post.subtitle}</strong></p>
-                        <p>${post.content}</p>
+                        <p>${post.content.substring(0, 100)}...</p>
+                        <button class="view-news" onclick="viewNews(${index})">Ver Notícia</button>
                     </div>
                 </div>
             `).join('');
         });
+
+        function viewNews(index) {
+            const posts = JSON.parse(localStorage.getItem('destaque-da-semana')) || [];
+            const post = posts[index];
+            
+            // Armazena a notícia no localStorage
+            localStorage.setItem('noticia-atual', JSON.stringify(post));
+            
+            // Redireciona para a página de visualização
+            window.location.href = "visualizacaoDestaqueSemana.html";
+        }
     </script>
 </body>
 

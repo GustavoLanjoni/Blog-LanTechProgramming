@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notícia - Destaque da Semana</title>
+    <link rel="shortcut icon" href="img/noticia.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/visualizacaoDestaqueSemana.css">
+</head>
+
+<body>
+    <button onclick="window.history.back()" class="back-btn">Voltar</button>
+
+    <section class="news-detail-container">
+        <div id="newsDetail" class="content">
+            <!-- As informações da notícia serão carregadas aqui -->
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Blog. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const newsDetailContainer = document.getElementById('newsDetail');
+            
+            // Obtém a notícia armazenada no localStorage
+            const news = JSON.parse(localStorage.getItem('noticia-atual'));
+
+            if (!news) {
+                newsDetailContainer.innerHTML = '<p>Notícia não encontrada.</p>';
+                return;
+            }
+
+            // Exibe as informações da notícia
+            newsDetailContainer.innerHTML = `
+                <h1>${news.title}</h1>
+                <p><strong>${news.subtitle}</strong></p>
+                <p>${news.content}</p>
+            `;
+        });
+    </script>
+</body>
+
+</html>
