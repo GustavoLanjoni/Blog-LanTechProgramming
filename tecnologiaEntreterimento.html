@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Destaque da Semana</title>
+    <title>Tecnologia e Entretenimento</title>
     <link rel="shortcut icon" href="img/noticia.png" type="image/x-icon">
     <link rel="stylesheet" href="css/destaqueSemana.css">
     <!-- Adicionar Font Awesome -->
@@ -22,7 +22,7 @@
     </header>
 
     <section class="news-container">
-        <h1>Destaques da Semana</h1>
+        <h1>Tecnologia e Entretenimento</h1>
         <p class="date"></p>
 
         <div id="postListContainer" class="content"></div>
@@ -52,9 +52,17 @@
             const dataFormatada = `${diasSemana[hoje.getDay()]}, ${hoje.getDate()} de ${mesesAno[hoje.getMonth()]} de ${hoje.getFullYear()}`;
             dateElement.textContent = dataFormatada;
 
-            // Carrega postagens do localStorage
-            const posts = JSON.parse(localStorage.getItem('tecnologia')) || [];
+            // Carrega postagens da categoria "tecnologia" através da API
+            carregarPostagens("tecnologia");
+        });
+
+        // Função para carregar postagens da categoria
+        async function carregarPostagens(categoria) {
+            const resposta = await fetch(`http://localhost:3000/posts?categoria=${categoria}`);
+            const posts = await resposta.json();
+
             const postListContainer = document.getElementById('postListContainer');
+            postListContainer.innerHTML = "";
 
             if (posts.length === 0) {
                 postListContainer.innerHTML = '<p>Não há postagens nesta categoria.</p>';
@@ -65,11 +73,11 @@
                 const likeCount = post.likes || 0;  // Pega a quantidade de curtidas armazenada
                 return `
                     <div class="news-card">
-                        <img src="${post.image}" alt="${post.title}">
+                        <img src="${post.imagem}" alt="${post.titulo}">
                         <div class="news-details">
-                            <h3>${post.title}</h3>
-                            <p><strong>${post.subtitle.substring(0, 60)}</strong></p>
-                            <p>${post.content.substring(0, 60)}...</p>
+                            <h3>${post.titulo}</h3>
+                            <p><strong>${post.subtitulo.substring(0, 60)}</strong></p>
+                            <p>${post.conteudo.substring(0, 60)}...</p>
                             <button class="view-news" onclick="viewNews(${index})">Ver Notícia</button>
                             <!-- Ícones de ação -->
                             <div class="action-icons">
@@ -83,16 +91,17 @@
                     </div>
                 `;
             }).join('');
-        });
+        }
 
+        // Exibe a notícia completa em um modal
         function viewNews(index) {
             const posts = JSON.parse(localStorage.getItem('tecnologia')) || [];
             const post = posts[index];
 
             // Exibe o modal com o conteúdo completo da notícia
-            document.getElementById("modalTitle").textContent = post.title;
-            document.getElementById("modalSubtitle").textContent = post.subtitle;
-            document.getElementById("modalContent").textContent = post.content;
+            document.getElementById("modalTitle").textContent = post.titulo;
+            document.getElementById("modalSubtitle").textContent = post.subtitulo;
+            document.getElementById("modalContent").textContent = post.conteudo;
 
             // Exibe o modal
             document.getElementById("newsModal").style.display = "block";
@@ -107,8 +116,8 @@
             // Caso o navegador suporte a Web Share API
             if (navigator.share) {
                 navigator.share({
-                    title: post.title,
-                    text: post.subtitle,
+                    title: post.titulo,
+                    text: post.subtitulo,
                     url: postUrl
                 }).then(() => {
                     console.log('Compartilhado com sucesso!');
@@ -142,21 +151,7 @@
             // Atualiza a quantidade de curtidas ao lado do botão
             document.getElementById(`likeCount-${index}`).textContent = post.likes;
 
-            alert(`Você curtiu a notícia: ${post.title}`);
-        }
-
-        // Função de Comentar
-        function commentNews(index) {
-            const comment = prompt("Deixe seu comentário:");
-            if (comment) {
-                const posts = JSON.parse(localStorage.getItem('tecnologia')) || [];
-                const post = posts[index];
-                const comments = post.comments || [];
-                comments.push(comment);
-                post.comments = comments;
-                localStorage.setItem('tecnologia', JSON.stringify(posts));
-                alert(`Comentário adicionado à notícia: ${post.title}`);
-            }
+            alert(`Você curtiu a notícia: ${post.titulo}`);
         }
 
         // Fecha o modal quando o botão de fechar for clicado

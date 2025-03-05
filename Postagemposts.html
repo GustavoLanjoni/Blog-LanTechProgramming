@@ -68,6 +68,8 @@
             event.preventDefault();
 
             const formData = new FormData(this);
+            formData.append("categoria", document.getElementById("postCategory").value);
+
             const response = await fetch("http://localhost:3000/posts", {
                 method: "POST",
                 body: formData
