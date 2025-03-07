@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Conta</title>
+    <link rel="stylesheet" href="css/cria_conta.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Criar Conta</h2>
+        <form id="signupForm">
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" required>
+
+            <label for="password">Senha:</label>
+            <input type="password" id="password" required>
+
+            <label for="role">Escolha sua função:</label>
+            <select id="role">
+                <option value="postar_noticia">Postar Notícia</option>
+                <option value="designer">Designer</option>
+                <option value="programador">Programador</option>
+            </select>
+            
+            <p>ja tem conta? <a href="loginAdm.html"><strong style="color: blue;">Entrar</strong></a></p><br>
+
+            <button type="submit">Criar Conta</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("signupForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Impede o envio do formulário
+
+            let role = document.getElementById("role").value;
+
+            // Redireciona para a página correspondente
+            if (role === "postar_noticia") {
+                window.location.href = "postar_noticia.html";
+            } else if (role === "designer") {
+                window.location.href = "designer.html";
+            } else if (role === "programador") {
+                window.location.href = "programador.html";
+            }
+        });
+
+    </script>
+</body>
+
+</html>

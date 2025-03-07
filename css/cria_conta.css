@@ -1,0 +1,90 @@
+/* Reset de margem e padding para um layout mais consistente */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo global */
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Container do formulário */
+.container {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Efeito de fade-in na abertura da página */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Estilo do título */
+h2 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Campos de entrada */
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+/* Efeito ao focar no input */
+input:focus, select:focus {
+    border-color: #0072ff;
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 114, 255, 0.3);
+}
+
+/* Botão estilizado */
+button {
+    background: linear-gradient(to right, #0072ff, #00c6ff);
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+/* Efeito hover no botão */
+button:hover {
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    transform: scale(1.05);
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 400px) {
+    .container {
+        width: 90%;
+    }
+}
