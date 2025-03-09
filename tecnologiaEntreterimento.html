@@ -82,13 +82,6 @@
     </script>
 
     <script>
-        // Carregar o cabeçalho dinamicamente
-        async function carregarHeader() {
-            const resposta = await fetch('header.html');
-            const conteudo = await resposta.text();
-            document.getElementById('header-container').innerHTML = conteudo;
-        }
-
         // Função para carregar as postagens
         async function carregarPosts() {
             const categoria = "tecnologiaEntreterimento"; // Categoria fixa ou pode ser dinâmica
@@ -153,7 +146,6 @@
         }
 
         // Carregar o cabeçalho e as postagens ao carregar a página
-        carregarHeader();
         carregarPosts();
     </script>
 </body>
