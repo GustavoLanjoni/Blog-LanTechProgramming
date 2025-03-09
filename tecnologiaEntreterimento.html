@@ -16,16 +16,20 @@
 
     <script>
         async function carregarPosts() {
-            const categoria = "tecnologiaEntreterimento"; // Categoria fixa ou pode ser dinâmica
+            const categoria = "tecnologiaEntretenimento"; // Nome corrigido
+
             try {
+                // Fazendo a requisição para a API
                 const resposta = await fetch(`http://localhost:5000/posts/${categoria}`);
 
-                // Verificar se a resposta foi bem-sucedida
                 if (!resposta.ok) {
                     throw new Error('Erro ao carregar os posts');
                 }
 
+                // Verificando a resposta
                 const posts = await resposta.json();
+
+                console.log("Posts recebidos da API:", posts); // Verificar o que está sendo retornado
 
                 const postagensContainer = document.getElementById("postagens");
                 if (!postagensContainer) {
@@ -35,24 +39,29 @@
 
                 postagensContainer.innerHTML = ''; // Limpa os posts anteriores
 
+                // Verificar se há posts para exibir
+                if (posts.length === 0) {
+                    postagensContainer.innerHTML = "<p>Não há posts disponíveis.</p>";
+                    return;
+                }
+
+                // Loop para adicionar os posts na página
                 posts.forEach(post => {
                     const postElement = document.createElement("div");
                     postElement.classList.add("post");
 
-                    const dataPostagem = new Date(post.dataPostagem);
-                    const dataFormatada = dataPostagem.toLocaleString('pt-BR'); // Formato de data no Brasil
+                    let dataFormatada = "Data não disponível";
+                    if (post.dataPostagem) {
+                        const dataPostagem = new Date(post.dataPostagem);
+                        dataFormatada = dataPostagem.toLocaleString('pt-BR');
+                    }
 
-                    console.log(post.imagem); // Verifique o nome da imagem
-
-postElement.innerHTML = `
-    <h2>${post.titulo}</h2>
-    <p><strong>Data:</strong> ${dataFormatada}</p>
-    <p>${post.conteudo}</p>
-    <img src="http://localhost:5000/uploads/${post.imagem}" alt="Imagem" width="300">
-
-`;
-
-
+                    postElement.innerHTML = `
+                        <h2>${post.titulo}</h2>
+                        <p><strong>Data:</strong> ${dataFormatada}</p>
+                        <p>${post.conteudo}</p>
+                        <img src="http://localhost:5000/${post.imagem}" alt="Imagem" width="300">
+                    `;
 
                     postagensContainer.appendChild(postElement);
                 });
