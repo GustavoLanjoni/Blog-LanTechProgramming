@@ -5,12 +5,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/tecnologia.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Tecnologia e Entretenimento</title>
 </head>
-
 <body>
-    <h1>Tecnologia e Entretenimento</h1>
-    <div id="postagens"></div> <!-- Mudei o id para "postagens" aqui -->
+
+
+
+    <header>
+        <div class="logo">
+            <h1>Tecnologia e Entretenimento</h1>
+        </div>
+        <nav class="nav-desktop">
+            <ul>
+                <li><a href="index.html">Página inicial</a></li>
+                <li><a href="noticia.html">New</a></li>
+                <li><a href="destaqueSemana.html">Destaque semana</a></li>
+                <li><a href="mundo.html">Mundo</a></li>
+            </ul>
+        </nav>
+
+        <!-- Ícone do Menu Hambúrguer -->
+        <div class="menu-hamburguer" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i> <!-- Ícone de hambúrguer -->
+        </div>
+
+        <!-- Menu para telas pequenas -->
+        <nav class="nav-mobile" id="menu-mobile">
+            <ul>
+                <li><a href="index.html">Página inicial</a></li>
+                <li><a href="noticia.html">New</a></li>
+                <li><a href="destaqueSemana.html">Destaque semana</a></li>
+                <li><a href="mundo.html">Mundo</a></li>
+            </ul>
+        </nav>
+
+        <div class="search-container">
+            <i class="fas fa-search"></i> <!-- Ícone de lupa -->
+            <input type="text" id="search" placeholder="Pesquise por notícias..." oninput="filtrarNoticias()">
+        </div>
+    </header>
+
+
+
+    <!-- Container das postagens -->
+    <div id="postagens"></div>
 
     <!-- Modal -->
     <div id="myModal" class="modal">
@@ -18,38 +57,59 @@
             <span class="close">&times;</span>
             <h2 id="modalTitulo"></h2>
             <p><strong>Subtítulo:</strong> <span id="modalSubtitulo"></span></p>
-            <!-- Linha separadora entre subtítulo e conteúdo -->
             <div class="linha-separacao"></div>
             <p><strong>Conteúdo:</strong> <span id="modalConteudo"></span></p>
         </div>
     </div>
 
     <script>
+        // Função para alternar o menu
+        function toggleMenu() {
+            const menuMobile = document.getElementById("menu-mobile");
+            menuMobile.classList.toggle("active");
+        }
+
+        // Fechar o menu ao clicar em um item
+        const menuItems = document.querySelectorAll(".nav-mobile ul li a");
+        menuItems.forEach(item => {
+            item.addEventListener("click", () => {
+                const menuMobile = document.getElementById("menu-mobile");
+                menuMobile.classList.remove("active"); // Fecha o menu
+            });
+        });
+
+
+    </script>
+
+    <script>
+        // Carregar o cabeçalho dinamicamente
+        async function carregarHeader() {
+            const resposta = await fetch('header.html');
+            const conteudo = await resposta.text();
+            document.getElementById('header-container').innerHTML = conteudo;
+        }
+
         // Função para carregar as postagens
         async function carregarPosts() {
             const categoria = "tecnologiaEntreterimento"; // Categoria fixa ou pode ser dinâmica
             const resposta = await fetch(`http://localhost:5000/posts/${categoria}`);
-
             const posts = await resposta.json();
             console.log("Posts recebidos:", posts);
 
             const postsContainer = document.getElementById("postagens");
-            postsContainer.innerHTML = ''; // Limpa a área onde os posts serão carregados
+            postsContainer.innerHTML = '';
 
             posts.forEach(post => {
                 const postElement = document.createElement("div");
                 postElement.classList.add("post");
-
                 const dataPostagem = new Date(post.dataPostagem);
                 const dataFormatada = dataPostagem.toLocaleString('pt-BR');
 
                 postElement.innerHTML = `
                     <h2>${post.titulo}</h2>
-                    <p><strong>Subtítulo:</strong> ${post.subtitulo}</p>
-                    <p><strong>Conteúdo:</strong> ${post.conteudo ? post.conteudo : 'Conteúdo não disponível'}</p>
-                    <p><strong>Data:</strong> ${dataFormatada}</p>
                     <img src="http://localhost:5000/${post.imagem}" alt="Imagem" width="300">
-                    <button onclick='abrirModal(${JSON.stringify(post)})'>Ver mais</button> <!-- Botão para abrir o modal -->
+                    <p><strong>Data:</strong> ${dataFormatada}</p>
+                    <button onclick='abrirModal(${JSON.stringify(post)})'>Ver mais</button>
                 `;
 
                 postsContainer.appendChild(postElement);
@@ -58,12 +118,10 @@
 
         // Função para abrir o modal com as informações completas do post
         function abrirModal(post) {
-            // Preenche o conteúdo do modal
             document.getElementById("modalTitulo").innerText = post.titulo;
             document.getElementById("modalSubtitulo").innerText = post.subtitulo;
             document.getElementById("modalConteudo").innerText = post.conteudo || 'Conteúdo não disponível';
 
-            // Exibe o modal
             document.getElementById("myModal").style.display = "block";
         }
 
@@ -80,7 +138,22 @@
             }
         }
 
-        // Carregar os posts ao carregar a página
+        // Função para filtrar notícias
+        function filtrarNoticias() {
+            const searchTerm = document.getElementById("search").value.toLowerCase();
+            const posts = document.querySelectorAll(".post");
+            posts.forEach(post => {
+                const titulo = post.querySelector("h2").innerText.toLowerCase();
+                if (titulo.includes(searchTerm)) {
+                    post.style.display = "block";
+                } else {
+                    post.style.display = "none";
+                }
+            });
+        }
+
+        // Carregar o cabeçalho e as postagens ao carregar a página
+        carregarHeader();
         carregarPosts();
     </script>
 </body>

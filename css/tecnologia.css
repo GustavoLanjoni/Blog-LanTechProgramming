@@ -1,82 +1,288 @@
+/* Definindo a fonte padrão */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+/* Cabeçalho */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #333;
+    color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+header .logo h1 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+header nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li {
+    margin-right: 30px;
+    transition: all 0.3s ease;
+}
+
+header nav ul li:last-child {
+    margin-right: 0;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    position: relative;
+}
+
+header nav ul li a:hover {
+    color: #ffffff;
+}
+
+header nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #f39c12;
+    bottom: -4px;
+    left: 0;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+header nav ul li a:hover::after {
+    transform: scaleX(1);
+}
+
+header .search-container {
+    display: flex;
+    align-items: center;
+    position: relative; /* Para posicionar o ícone dentro do campo de pesquisa */
+}
+
+header .search-container input {
+    padding: 10px 15px 10px 40px; /* Espaço à esquerda para o ícone */
+    font-size: 16px;
+    border: none;
+    border-radius: 20px;
+    background-color: #444;
+    color: #fff;
+    width: 250px;
+    transition: width 0.3s ease;
+}
+
+header .search-container input:focus {
+    outline: none;
+    background-color: #555;
+    width: 300px;
+}
+
+header .search-container i {
+    position: absolute;
+    left: 10px; /* Alinha o ícone à esquerda dentro do input */
+    color: #fff;
+    font-size: 18px;
+}
+
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+/* Estilos para o menu em telas grandes (desktop) */
+.nav-desktop {
+    display: block;
+}
+
+/* Estilos para o menu em telas pequenas (mobile) */
+.nav-mobile {
+    display: none;
+    /* Inicialmente oculto */
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    width: 100%;
+    height: 100vh;
+    padding-top: 60px;
+}
+
+.nav-mobile ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-mobile ul li {
+    margin: 20px 0;
+}
+
+/* Mostrar o menu quando for necessário */
+.nav-mobile.active {
+    display: block;
+}
+
+/* Ícone de menu hambúrguer */
+.menu-hamburguer {
+    display: none;
+    /* Inicialmente oculto em telas grandes */
+    cursor: pointer;
+}
+
+.menu-hamburguer i {
+    font-size: 30px;
+}
+
+
+
+
+/* Estilo do cabeçalho */
 h1 {
     text-align: center;
-    color: #222;
-    font-size: 2em;
-    margin-bottom: 20px;
+    font-size: 2.5rem;
+    margin-top: 30px;
+    color: #0073e6;
 }
 
-#posts {
+/* Estilo do container principal de postagens */
+#postagens {
+    max-width: 1200px;
+    margin: 40px auto;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+    flex-wrap: wrap; /* Permite que as postagens se ajustem em várias linhas */
+    gap: 20px; /* Espaço entre as postagens */
+    padding: 0 20px;
 }
 
+/* Estilo das postagens */
 .post {
-    background-color: white;
+    background-color: #fff;
     padding: 20px;
-    width: 300px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
     border-radius: 8px;
-    transition: transform 0.3s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: calc(33.33% - 20px); /* Cada postagem ocupa 1/3 do container, com espaçamento entre elas */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
 }
 
-.post:hover {
-    transform: scale(1.05);
+/* Limitar o título para não ultrapassar mais que 2 linhas */
+.post h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #333;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; /* Garante que o título não quebre linha */
+    max-width: 100%; /* Garante que o título não ultrapasse o limite do container */
 }
 
-h2 {
-    font-size: 1.6em;
-    margin: 10px 0;
+/* Estilo para a imagem nas postagens */
+.post img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 20px;
 }
 
-p {
-    font-size: 1em;
-    color: #555;
-    margin: 10px 0;
-}
-
-img {
+/* Estilo do conteúdo de texto nas postagens */
+.post .texto {
+    margin-top: 20px;
     width: 100%;
-    border-radius: 8px;
-    margin-top: 10px;
 }
 
-strong {
-    font-weight: bold;
+/* Subtítulo das postagens */
+.post p {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: #555;
 }
 
-/* Estilo para o modal */
+/* Estilo do botão de ver mais */
+.post button {
+    padding: 10px 20px;
+    background-color: #0073e6;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.post button:hover {
+    background-color: #005bb5;
+}
+
+/* Estilo do modal */
 .modal {
-    display: none; /* Ocultar o modal inicialmente */
+    display: none;
     position: fixed;
-    z-index: 1; /* Ficar sobreposto ao conteúdo */
+    z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto; /* Permitir rolagem se necessário */
-    background-color: rgba(0, 0, 0, 0.4); /* Fundo transparente */
+    background-color: rgba(0, 0, 0, 0.4);
+    overflow: auto;
 }
 
 /* Estilo do conteúdo do modal */
 .modal-content {
-    background-color: #fefefe;
+    background-color: #fff;
     margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 600px;
     width: 80%;
 }
 
-/* Botão de fechar */
+/* Título do modal */
+.modal-content h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Estilo para os subtítulos e conteúdo dentro do modal */
+.modal-content p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+/* Linha separadora entre subtítulo e conteúdo no modal */
+.linha-separacao {
+    border-top: 1px solid #ddd;
+    margin: 10px 0;
+}
+
+/* Estilo para o botão de fechar do modal */
 .close {
     color: #aaa;
     float: right;
@@ -86,7 +292,104 @@ strong {
 
 .close:hover,
 .close:focus {
-    color: black;
+    color: #333;
     text-decoration: none;
     cursor: pointer;
+}
+
+/* Estilo para o rodapé */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 15px 0;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Responsividade para dispositivos móveis */
+@media (max-width: 768px) {
+    .post {
+        width: calc(50% - 20px); /* Cada postagem ocupa 50% do container em telas menores */
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .post img {
+        max-width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .post button {
+        width: 100%;
+        padding: 15px;
+        font-size: 1.1rem;
+    }
+
+    .modal-content {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .post {
+        width: 100%; /* Cada postagem ocupa 100% do container em telas muito pequenas */
+    }
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    header .logo h1 {
+        font-size: 24px;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        margin-top: 10px;
+    }
+
+    header nav ul li {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+
+    header .search-container input {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 15px;
+    }
+
+    header .logo h1 {
+        font-size: 20px;
+    }
+
+    header nav ul li a {
+        font-size: 14px;
+    }
+}
+
+/* Estilos para o menu em telas pequenas */
+@media (max-width: 768px) {
+    .nav-desktop {
+        display: none;
+        /* Esconde o menu em telas pequenas */
+    }
+
+    .menu-hamburguer {
+        display: block;
+        /* Exibe o ícone de hambúrguer em telas pequenas */
+    }
 }
