@@ -21,6 +21,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/meu_blog")
 const postSchema = new mongoose.Schema({
     titulo: String,
     subtitulo: String,
+    conteudo: String,
     categoria: String,
     imagem: String,
     dataPostagem: { type: Date, default: Date.now } // Garante que a data seja salva
@@ -43,7 +44,7 @@ const upload = multer({ storage });
 
 // Rota para adicionar postagem
 app.post("/add-post", upload.single("imagem"), async (req, res) => {
-    const { titulo, subtitulo, categoria } = req.body;
+    const { titulo, subtitulo, conteudo, categoria } = req.body;
     const imagem = req.file ? req.file.filename : "";
     const dataPostagem = new Date(); // Adicionando a data manualmente
 
@@ -61,19 +62,15 @@ app.post("/add-post", upload.single("imagem"), async (req, res) => {
 app.get("/posts/:categoria", async (req, res) => {
     try {
         const categoria = req.params.categoria;
+        console.log("Categoria recebida:", categoria); // Adicionado para debug
         const posts = await Post.find({ categoria });
-        
-        // Verificar se os posts têm data e converter para ISO se necessário
-        const postsComData = posts.map(post => ({
-            ...post._doc,
-            dataPostagem: post.dataPostagem ? post.dataPostagem.toISOString() : null
-        }));
-
-        res.json(postsComData);
+        //...
     } catch (error) {
         res.status(500).json({ message: "Erro ao buscar postagens", error });
     }
 });
+
+
 
 // Iniciar servidor
 app.listen(PORT, () => {

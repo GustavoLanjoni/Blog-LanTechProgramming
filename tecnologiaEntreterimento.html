@@ -6,45 +6,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/tecnologia.css">
     <title>Tecnologia e Entretenimento</title>
+   
 </head>
 
 <body>
     <h1>Tecnologia e Entretenimento</h1>
     <div id="postagens"></div> <!-- Mudei o id para "postagens" aqui -->
 
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitulo"></h2>
+            <p><strong>Subtítulo:</strong> <span id="modalSubtitulo"></span></p>
+            <p><strong>Conteúdo:</strong> <span id="modalConteudo"></span></p>
+
+        </div>
+    </div>
+
     <script>
+        // Função para carregar as postagens
         async function carregarPosts() {
-            const categoria = "tecnologiaEntretenimento"; // Categoria fixa ou pode ser dinâmica
+            const categoria = "tecnologiaEntreterimento"; // Categoria fixa ou pode ser dinâmica
             const resposta = await fetch(`http://localhost:5000/posts/${categoria}`);
 
-            // Verifique a resposta da API
             const posts = await resposta.json();
-            console.log(posts); // Log para verificar o que está sendo retornado
+            console.log("Posts recebidos:", posts);
 
             const postsContainer = document.getElementById("postagens");
-            postsContainer.innerHTML = '';
+            postsContainer.innerHTML = ''; // Limpa a área onde os posts serão carregados
 
             posts.forEach(post => {
                 const postElement = document.createElement("div");
                 postElement.classList.add("post");
 
                 const dataPostagem = new Date(post.dataPostagem);
-                const dataFormatada = dataPostagem.toLocaleString('pt-BR'); // Formato de data no Brasil
+                const dataFormatada = dataPostagem.toLocaleString('pt-BR');
 
                 postElement.innerHTML = `
                     <h2>${post.titulo}</h2>
+                    <p><strong>Subtítulo:</strong> ${post.subtitulo}</p>
+                    <p><strong>Conteúdo:</strong> ${post.conteudo ? post.conteudo : 'Conteúdo não disponível'}</p>
                     <p><strong>Data:</strong> ${dataFormatada}</p>
-                    <p>${post.subtitulo}</p> <!-- Troque 'conteudo' por 'subtitulo' -->
-                    <img src="uploads/${post.imagem}" alt="Imagem" width="300">
+                    <img src="http://localhost:5000/${post.imagem}" alt="Imagem" width="300">
+                    <button onclick="abrirModal(${JSON.stringify(post)})">Ver mais</button> <!-- Botão para abrir o modal -->
                 `;
-
 
                 postsContainer.appendChild(postElement);
             });
         }
 
-        carregarPosts();
+        // Função para abrir o modal com as informações completas do post
+        function abrirModal(post) {
+            // Preenche o conteúdo do modal
+            document.getElementById("modalTitulo").innerText = post.titulo;
+            document.getElementById("modalSubtitulo").innerText = post.subtitulo;
+            document.getElementById("modalConteudo").innerText = post.conteudo || 'Conteúdo não disponível';
+            document.getElementById("modalData").innerText = new Date(post.dataPostagem).toLocaleString('pt-BR');
+            document.getElementById("modalImagem").src = `http://localhost:5000/${post.imagem}`;
 
+            // Exibe o modal
+            document.getElementById("myModal").style.display = "block";
+        }
+
+        // Função para fechar o modal
+        const closeModal = document.querySelector(".close");
+        closeModal.onclick = function () {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        // Fecha o modal ao clicar fora dele
+        window.onclick = function (event) {
+            if (event.target == document.getElementById("myModal")) {
+                document.getElementById("myModal").style.display = "none";
+            }
+        }
+
+        // Carregar os posts ao carregar a página
+        carregarPosts();
     </script>
 </body>
 

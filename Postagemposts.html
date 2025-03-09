@@ -12,6 +12,9 @@
         <label for="titulo">Título:</label>
         <input type="text" id="titulo" name="titulo" required><br><br>
 
+        <label for="subtitulo">Subtítulo:</label>
+        <input type="text" id="subtitulo" name="subtitulo" required><br><br> <!-- Subtítulo adicionado -->
+
         <label for="conteudo">Conteúdo:</label>
         <textarea id="conteudo" name="conteudo" rows="5" required></textarea><br><br>
 
@@ -39,6 +42,7 @@
 
             const formData = new FormData();
             formData.append("titulo", document.getElementById("titulo").value);
+            formData.append("subtitulo", document.getElementById("subtitulo").value); // Adicionando o subtítulo
             formData.append("conteudo", document.getElementById("conteudo").value);
             formData.append("categoria", document.getElementById("categoria").value);
             formData.append("imagem", document.getElementById("imagem").files[0]);
