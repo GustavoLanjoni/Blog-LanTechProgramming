@@ -10,10 +10,7 @@ const PORT = 5000;
 // Configuração do CORS
 app.use(cors());
 app.use(express.json());
-
-// Caminho mais seguro para a pasta 'uploads'
-const UPLOADS_DIR = path.join(__dirname, 'uploads');
-app.use(express.static(UPLOADS_DIR)); 
+app.use(express.static(path.join(__dirname, 'uploads'))); // Servindo a pasta uploads para imagens
 
 // Conectar ao MongoDB
 mongoose.connect("mongodb://127.0.0.1:27017/meu_blog", {
@@ -29,7 +26,7 @@ const postSchema = new mongoose.Schema({
     subtitulo: String,
     categoria: String,
     imagem: String,
-    dataPostagem: { type: Date, default: Date.now }
+    dataPostagem: { type: Date, default: Date.now } // Adicionando data e hora
 });
 
 const Post = mongoose.model("Post", postSchema);
@@ -37,10 +34,10 @@ const Post = mongoose.model("Post", postSchema);
 // Configuração do Multer para upload de imagens
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, UPLOADS_DIR); // Caminho absoluto para uploads
+        cb(null, path.join(__dirname, 'uploads')); // Caminho absoluto
     },
     filename: (req, file, cb) => {
-        // Garantir que o nome da imagem seja único
+        // Para garantir que o nome da imagem não seja duplicado
         const extension = path.extname(file.originalname);
         cb(null, Date.now() + extension); // Usando timestamp para garantir nome único
     }
@@ -58,7 +55,6 @@ app.post("/add-post", upload.single("imagem"), async (req, res) => {
         await novoPost.save();
         res.json({ message: "✅ Postagem adicionada com sucesso!" });
     } catch (error) {
-        console.error(error); // Melhor controle de erro
         res.status(500).json({ message: "Erro ao salvar a postagem", error });
     }
 });
@@ -70,7 +66,6 @@ app.get("/posts/:categoria", async (req, res) => {
         const posts = await Post.find({ categoria });
         res.json(posts);
     } catch (error) {
-        console.error(error); // Melhor controle de erro
         res.status(500).json({ message: "Erro ao buscar postagens", error });
     }
 });
