@@ -16,9 +16,9 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'uploads')));
 
 // Conectar ao MongoDB
-mongoose.connect("mongodb://127.0.0.1:27017/meu_blog")
-.then(() => console.log("🟢 Conectado ao MongoDB"))
-.catch(err => console.error("🔴 Erro ao conectar:", err));
+mongoose.connect("mongodb://127.0.0.1:27017/meu_blog", { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log("🟢 Conectado ao MongoDB"))
+    .catch(err => console.error("🔴 Erro ao conectar:", err));
 
 // Definir o modelo de Postagem
 const postSchema = new mongoose.Schema({
@@ -34,8 +34,11 @@ const Post = mongoose.model("Post", postSchema);
 
 // Definir o modelo de Usuário
 const usuarioSchema = new mongoose.Schema({
+    nomeUsuario: String,
     email: { type: String, required: true, unique: true },
+    telefone: String,
     senha: { type: String, required: true },
+    profissao: String,
 });
 
 const Usuario = mongoose.model("Usuario", usuarioSchema);
@@ -70,7 +73,7 @@ app.post("/add-post", upload.single("imagem"), async (req, res) => {
     const dataPostagem = new Date(); // Adicionando a data manualmente
 
     try {
-        const novoPost = new Post({ titulo, subtitulo, categoria, imagem, dataPostagem });
+        const novoPost = new Post({ titulo, subtitulo, conteudo, categoria, imagem, dataPostagem });
         await novoPost.save();
         res.json({ message: "✅ Postagem adicionada com sucesso!" });
     } catch (error) {
@@ -78,8 +81,37 @@ app.post("/add-post", upload.single("imagem"), async (req, res) => {
     }
 });
 
-// Rota para criar um novo usuário
+// Rota para criar um novo usuário (usuário padrão)
 app.post("/criarConta", async (req, res) => {
+    const { nomeUsuario, email, telefone, senha, profissao } = req.body;
+
+    // Verificar se o e-mail já está cadastrado
+    const usuarioExistente = await Usuario.findOne({ email });
+    if (usuarioExistente) {
+        return res.status(400).json({ message: "E-mail já cadastrado!" });
+    }
+
+    // Criptografar a senha
+    const senhaCriptografada = await bcrypt.hash(senha, 10);
+
+    const novoUsuario = new Usuario({
+        nomeUsuario,
+        email,
+        telefone,
+        senha: senhaCriptografada,
+        profissao
+    });
+
+    try {
+        await novoUsuario.save();
+        res.json({ message: "Conta criada com sucesso!" });
+    } catch (error) {
+        res.status(500).json({ message: "Erro ao criar conta", error });
+    }
+});
+
+// Rota para criar um novo usuário administrador
+app.post("/criarAdm", async (req, res) => {
     const { email, senha } = req.body;
 
     // Verificação e criação do usuário sem o `role`

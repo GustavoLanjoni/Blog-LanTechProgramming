@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Blog</title>
+    <link rel="stylesheet" href="css/cadastro.css">
+</head>
+<body>
+
+    <div class="cadastro-container">
+        <h2>Cadastro</h2>
+
+        <form id="cadastro-form" method="POST">
+            <div class="form-group">
+                <label for="nomeUsuario">Nome de Usuário:</label>
+                <input type="text" id="nomeUsuario" name="nomeUsuario" required placeholder="Seu nome de usuário">
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required placeholder="Seu e-mail">
+            </div>
+
+            <div class="form-group">
+                <label for="telefone">Telefone:</label>
+                <input type="tel" id="telefone" name="telefone" required placeholder="Seu telefone">
+            </div>
+
+            <div class="form-group">
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" required placeholder="Sua senha">
+            </div>
+
+            <div class="form-group">
+                <label for="profissao">Profissão:</label>
+                <select id="profissao" name="profissao" required>
+                    <option value="Desenvolvedor">Desenvolvedor</option>
+                    <option value="Designer">Designer</option>
+                    <option value="Analista de Sistemas">Analista de Sistemas</option>
+                    <option value="Gerente de TI">Gerente de TI</option>
+                    <option value="Administrador de Banco de Dados">Administrador de Banco de Dados</option>
+                    <option value="Outros">Outros</option>
+                </select>
+            </div>
+
+            <button type="submit" class="cadastro-btn">Cadastrar</button>
+        </form>
+
+        <p>Já tem uma conta? <a href="login.html">Faça login</a></p>
+    </div>
+
+    <script src="js/cadastro.js"></script>
+</body>
+</html>
