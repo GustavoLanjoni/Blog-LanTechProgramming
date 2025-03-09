@@ -23,25 +23,56 @@
                 <input type="password" id="password" placeholder="Digite sua senha" required>
                 <i id="toggle-password" class="fas fa-eye"></i> <!-- Ícone para alternar visibilidade -->
             </div>
-            <p>você não tem conta?       <a href="criarConta.html"><strong style="color: blue;">Criar conta</strong></a></p><br>
+            <p>você não tem conta? <a href="criarConta.html"><strong style="color: blue;">Criar conta</strong></a></p>
+            <br>
             <button type="submit">Entrar</button>
         </form>
         <p id="error-message"></p>
     </div>
 
-    <script src="js/login.js"></script>
-
     <script>
-        document.getElementById("toggle-password").addEventListener("click", function () {
-            const passwordField = document.getElementById("password");
-            const type = passwordField.type === "password" ? "text" : "password"; // Alterna o tipo entre 'password' e 'text'
-            passwordField.type = type;
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("loginForm").addEventListener("submit", async function (event) {
+                event.preventDefault(); // Impede o envio do formulário
 
-            // Muda o ícone para o olho fechado ou aberto
-            this.classList.toggle("fa-eye-slash");
+                const email = document.getElementById("email").value;
+                const senha = document.getElementById("password").value;
+
+                // Enviar dados para o servidor para verificar as credenciais
+                try {
+                    const response = await fetch("http://localhost:5000/loginAdm", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ email, senha }),
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        alert(data.message); // Exibe a mensagem de sucesso
+                        localStorage.setItem("token", data.token); // Salva o token no localStorage
+                        window.location.href = "admin.html"; // Redireciona para a página do painel (você deve criar a página painel.html)
+                    } else {
+                        alert(data.message); // Exibe a mensagem de erro
+                    }
+                } catch (error) {
+                    console.error("Erro ao fazer login", error);
+                    alert("Erro ao fazer login");
+                }
+            });
         });
 
+        // Função para alternar a visibilidade da senha
+        document.getElementById("toggle-password").addEventListener("click", function () {
+            const passwordField = document.getElementById("password");
+            const type = passwordField.type === "password" ? "text" : "password";
+            passwordField.type = type;
+            this.classList.toggle("fa-eye-slash");
+        });
     </script>
+
 </body>
 
 </html>

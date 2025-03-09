@@ -16,8 +16,8 @@ app.use(express.static(path.join(__dirname, 'uploads')));
 
 // Conectar ao MongoDB
 mongoose.connect("mongodb://127.0.0.1:27017/meu_blog")
-.then(() => console.log("🟢 Conectado ao MongoDB"))
-.catch(err => console.error("🔴 Erro ao conectar:", err));
+    .then(() => console.log("🟢 Conectado ao MongoDB"))
+    .catch(err => console.error("🔴 Erro ao conectar:", err));
 
 // Definir o modelo de Postagem
 const postSchema = new mongoose.Schema({
@@ -35,10 +35,19 @@ const Post = mongoose.model("Post", postSchema);
 const usuarioSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true },
     senha: { type: String, required: true },
-    role: { type: String, required: true }
 });
 
 const Usuario = mongoose.model("Usuario", usuarioSchema);
+
+// Definir o modelo de Comentário (simulando a contagem de comentários)
+const comentarioSchema = new mongoose.Schema({
+    postId: { type: mongoose.Schema.Types.ObjectId, ref: 'Post' },
+    usuarioId: { type: mongoose.Schema.Types.ObjectId, ref: 'Usuario' },
+    conteudo: String,
+    dataComentario: { type: Date, default: Date.now },
+});
+
+const Comentario = mongoose.model("Comentario", comentarioSchema);
 
 // Configuração do Multer para upload de imagens
 const storage = multer.diskStorage({
@@ -70,20 +79,17 @@ app.post("/add-post", upload.single("imagem"), async (req, res) => {
 
 // Rota para criar um novo usuário
 app.post("/criarConta", async (req, res) => {
-    const { email, senha, role } = req.body;
+    const { email, senha } = req.body;  // Remova role daqui
 
-    // Verificar se o e-mail já está cadastrado
+    // Verificação e criação do usuário sem o `role`
     const usuarioExistente = await Usuario.findOne({ email });
     if (usuarioExistente) {
         return res.status(400).json({ message: "E-mail já cadastrado!" });
     }
 
-    // Criptografar a senha
     const senhaCriptografada = await bcrypt.hash(senha, 10);
 
-    // Criar um novo usuário
-    const novoUsuario = new Usuario({ email, senha: senhaCriptografada, role });
-
+    const novoUsuario = new Usuario({ email, senha: senhaCriptografada }); // Sem o `role`
     try {
         await novoUsuario.save();
         res.json({ message: "Conta criada com sucesso!" });
@@ -126,6 +132,36 @@ app.get("/posts/:categoria", async (req, res) => {
         res.json(posts);
     } catch (error) {
         res.status(500).json({ message: "Erro ao buscar postagens", error });
+    }
+});
+
+// Rota para contar o total de posts
+app.get("/posts/total", async (req, res) => {
+    try {
+        const totalPosts = await Post.countDocuments();
+        res.json({ total: totalPosts });
+    } catch (error) {
+        res.status(500).json({ message: "Erro ao contar posts", error });
+    }
+});
+
+// Rota para contar o total de comentários
+app.get("/comments/total", async (req, res) => {
+    try {
+        const totalComments = await Comentario.countDocuments();
+        res.json({ total: totalComments });
+    } catch (error) {
+        res.status(500).json({ message: "Erro ao contar comentários", error });
+    }
+});
+
+// Rota para contar o total de usuários
+app.get("/users/total", async (req, res) => {
+    try {
+        const totalUsers = await Usuario.countDocuments();
+        res.json({ total: totalUsers });
+    } catch (error) {
+        res.status(500).json({ message: "Erro ao contar usuários", error });
     }
 });
 

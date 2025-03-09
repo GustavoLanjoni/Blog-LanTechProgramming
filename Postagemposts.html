@@ -5,15 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/post.css">
     <title>Postar Nova Notícia</title>
+
 </head>
 <body>
+
+    <button onclick="window.history.back()" class="voltar">Voltar</button>
+
     <h1>Postar Nova Notícia</h1>
     <form id="formPost">
         <label for="titulo">Título:</label>
         <input type="text" id="titulo" name="titulo" required><br><br>
 
         <label for="subtitulo">Subtítulo:</label>
-        <input type="text" id="subtitulo" name="subtitulo" required><br><br> <!-- Subtítulo adicionado -->
+        <input type="text" id="subtitulo" name="subtitulo" required><br><br>
 
         <label for="conteudo">Conteúdo:</label>
         <textarea id="conteudo" name="conteudo" rows="5" required></textarea><br><br>
@@ -31,18 +35,36 @@
         <button type="submit">Publicar</button>
     </form>
 
+    
+
     <script>
+        // Função para carregar as estatísticas atualizadas
+        async function carregarEstatisticas() {
+            try {
+                const response = await fetch("http://localhost:5000/get-estatisticas");
+                const data = await response.json();
+                
+                // Atualiza os valores na seção
+                document.getElementById("totalPosts").textContent = data.totalPosts || "0";
+                document.getElementById("totalComments").textContent = data.totalComments || "0";
+                document.getElementById("totalUsers").textContent = data.totalUsers || "0";
+            } catch (error) {
+                console.error("Erro ao carregar as estatísticas:", error);
+            }
+        }
+
         document.getElementById("formPost").addEventListener("submit", async function(event) {
             event.preventDefault();
 
-            // Exibindo o carregamento enquanto envia os dados
+            // Exibindo a mensagem de carregamento
             const loadingMessage = document.createElement("div");
             loadingMessage.textContent = "Publicando, por favor aguarde...";
+            loadingMessage.classList.add("loading-message");
             document.body.appendChild(loadingMessage);
 
             const formData = new FormData();
             formData.append("titulo", document.getElementById("titulo").value);
-            formData.append("subtitulo", document.getElementById("subtitulo").value); // Adicionando o subtítulo
+            formData.append("subtitulo", document.getElementById("subtitulo").value);
             formData.append("conteudo", document.getElementById("conteudo").value);
             formData.append("categoria", document.getElementById("categoria").value);
             formData.append("imagem", document.getElementById("imagem").files[0]);
@@ -58,20 +80,35 @@
                 // Remover a mensagem de carregamento
                 document.body.removeChild(loadingMessage);
 
-                alert(resultado.message); // Exibe a resposta do servidor
-
                 if (resposta.ok) {
+                    const successMessage = document.createElement("div");
+                    successMessage.textContent = resultado.message;
+                    successMessage.classList.add("success-message");
+                    document.body.appendChild(successMessage);
+
                     // Redireciona para a página da categoria
-                    window.location.href = `${document.getElementById("categoria").value}.html`;
+                    setTimeout(() => {
+                        window.location.href = `${document.getElementById("categoria").value}.html`;
+                    }, 2000); // Atraso para o usuário ver a mensagem
+
+                    // Carregar as estatísticas atualizadas
+                    carregarEstatisticas();
                 } else {
-                    alert("Erro ao adicionar a postagem.");
+                    throw new Error("Erro ao adicionar a postagem");
                 }
             } catch (error) {
                 // Remover a mensagem de carregamento em caso de erro
                 document.body.removeChild(loadingMessage);
-                alert("Erro ao enviar a postagem: " + error.message);
+
+                const errorMessage = document.createElement("div");
+                errorMessage.textContent = "Erro ao enviar a postagem: " + error.message;
+                errorMessage.classList.add("error-message");
+                document.body.appendChild(errorMessage);
             }
         });
+
+        // Carregar as estatísticas assim que a página for carregada
+        window.onload = carregarEstatisticas;
     </script>
 </body>
 </html>
