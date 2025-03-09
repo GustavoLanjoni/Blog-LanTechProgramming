@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/tecnologia.css">
     <title>Tecnologia e Entretenimento</title>
-   
 </head>
 
 <body>
@@ -19,8 +18,9 @@
             <span class="close">&times;</span>
             <h2 id="modalTitulo"></h2>
             <p><strong>Subtítulo:</strong> <span id="modalSubtitulo"></span></p>
+            <!-- Linha separadora entre subtítulo e conteúdo -->
+            <div class="linha-separacao"></div>
             <p><strong>Conteúdo:</strong> <span id="modalConteudo"></span></p>
-
         </div>
     </div>
 
@@ -49,7 +49,7 @@
                     <p><strong>Conteúdo:</strong> ${post.conteudo ? post.conteudo : 'Conteúdo não disponível'}</p>
                     <p><strong>Data:</strong> ${dataFormatada}</p>
                     <img src="http://localhost:5000/${post.imagem}" alt="Imagem" width="300">
-                    <button onclick="abrirModal(${JSON.stringify(post)})">Ver mais</button> <!-- Botão para abrir o modal -->
+                    <button onclick='abrirModal(${JSON.stringify(post)})'>Ver mais</button> <!-- Botão para abrir o modal -->
                 `;
 
                 postsContainer.appendChild(postElement);
@@ -62,8 +62,6 @@
             document.getElementById("modalTitulo").innerText = post.titulo;
             document.getElementById("modalSubtitulo").innerText = post.subtitulo;
             document.getElementById("modalConteudo").innerText = post.conteudo || 'Conteúdo não disponível';
-            document.getElementById("modalData").innerText = new Date(post.dataPostagem).toLocaleString('pt-BR');
-            document.getElementById("modalImagem").src = `http://localhost:5000/${post.imagem}`;
 
             // Exibe o modal
             document.getElementById("myModal").style.display = "block";
