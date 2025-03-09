@@ -15,13 +15,11 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'uploads')));
 
 // Conectar ao MongoDB
-mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
-.then(() => console.log("🟢 Conectado ao MongoDB Atlas"))
+mongoose.connect("mongodb://127.0.0.1:27017/meu_blog")
+.then(() => console.log("🟢 Conectado ao MongoDB"))
 .catch(err => console.error("🔴 Erro ao conectar:", err));
 
+// Definir o modelo de Postagem
 const postSchema = new mongoose.Schema({
     titulo: String,
     subtitulo: String,
@@ -50,6 +48,7 @@ const comentarioSchema = new mongoose.Schema({
 });
 
 const Comentario = mongoose.model("Comentario", comentarioSchema);
+
 
 // Configuração do Multer para upload de imagens
 const storage = multer.diskStorage({
@@ -100,6 +99,7 @@ app.post("/criarConta", async (req, res) => {
     }
 });
 
+
 // Rota para login (autenticação)
 app.post("/loginAdm", async (req, res) => {
     const { email, senha } = req.body;
@@ -125,6 +125,7 @@ app.post("/loginAdm", async (req, res) => {
     }
 });
 
+
 // Rota para buscar postagens por categoria
 app.get("/posts/:categoria", async (req, res) => {
     try {
@@ -134,36 +135,6 @@ app.get("/posts/:categoria", async (req, res) => {
         res.json(posts);
     } catch (error) {
         res.status(500).json({ message: "Erro ao buscar postagens", error });
-    }
-});
-
-// Rota para contar o total de posts
-app.get("/posts/total", async (req, res) => {
-    try {
-        const totalPosts = await Post.countDocuments();
-        res.json({ total: totalPosts });
-    } catch (error) {
-        res.status(500).json({ message: "Erro ao contar posts", error });
-    }
-});
-
-// Rota para contar o total de comentários
-app.get("/comments/total", async (req, res) => {
-    try {
-        const totalComments = await Comentario.countDocuments();
-        res.json({ total: totalComments });
-    } catch (error) {
-        res.status(500).json({ message: "Erro ao contar comentários", error });
-    }
-});
-
-// Rota para contar o total de usuários
-app.get("/users/total", async (req, res) => {
-    try {
-        const totalUsers = await Usuario.countDocuments();
-        res.json({ total: totalUsers });
-    } catch (error) {
-        res.status(500).json({ message: "Erro ao contar usuários", error });
     }
 });
 
