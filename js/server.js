@@ -15,11 +15,13 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'uploads')));
 
 // Conectar ao MongoDB
-mongoose.connect("mongodb://127.0.0.1:27017/meu_blog")
-    .then(() => console.log("🟢 Conectado ao MongoDB"))
-    .catch(err => console.error("🔴 Erro ao conectar:", err));
+mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+.then(() => console.log("🟢 Conectado ao MongoDB Atlas"))
+.catch(err => console.error("🔴 Erro ao conectar:", err));
 
-// Definir o modelo de Postagem
 const postSchema = new mongoose.Schema({
     titulo: String,
     subtitulo: String,
