@@ -2,67 +2,69 @@ const express = require("express");
 const mongoose = require("mongoose");
 const multer = require("multer");
 const cors = require("cors");
-const path = require("path");
 
 const app = express();
+const PORT = 5000;
+
+// Configuração do CORS
 app.use(cors());
+app.use(express.json());
+app.use(express.static("uploads"));
 
-// Conexão com o MongoDB
-mongoose.connect('mongodb://localhost:27017/Blog')
-  .then(() => console.log('Conectado ao MongoDB'))
-  .catch(err => console.log('Erro ao conectar ao MongoDB: ', err));
+// Conectar ao MongoDB
+mongoose.connect("mongodb://127.0.0.1:27017/meu_blog", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+.then(() => console.log("🟢 Conectado ao MongoDB"))
+.catch(err => console.error("🔴 Erro ao conectar:", err));
 
-// Esquema de Postagem
+// Definir o modelo de Postagem
 const postSchema = new mongoose.Schema({
     titulo: String,
     subtitulo: String,
-    conteudo: String,
-    imagem: String,
-    categoria: String
+    categoria: String,
+    imagem: String
 });
 
 const Post = mongoose.model("Post", postSchema);
 
-// Configuração do multer
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
-
-// Servindo arquivos estáticos
-app.use(express.static(path.join(__dirname, 'BLOG-LANTECH'))); // Atualizado para a pasta BLOG-LANTECH
-
-// Rota para criação de postagens
-app.post("/posts", upload.single("postImage"), async (req, res) => {
-    try {
-        const { postTitle, postSubtitle, postContent, categoria } = req.body;
-        const imagem = req.file ? req.file.buffer.toString("base64") : null;
-
-        const post = new Post({
-            titulo: postTitle,
-            subtitulo: postSubtitle,
-            conteudo: postContent,
-            imagem,
-            categoria
-        });
-
-        await post.save();
-        res.status(201).json({ message: "Postagem criada com sucesso!" });
-    } catch (error) {
-        res.status(500).json({ error: "Erro ao criar postagem" });
+// Configuração do Multer para upload de imagens
+const storage = multer.diskStorage({
+    destination: "uploads/",
+    filename: (req, file, cb) => {
+        cb(null, file.originalname);
     }
 });
 
-// Rota para listar postagens
-app.get("/posts", async (req, res) => {
-    const { categoria } = req.query; // Filtra por categoria se houver parâmetro na URL
-    const query = categoria ? { categoria } : {};
-    const posts = await Post.find(query);
-    res.json(posts);
+const upload = multer({ storage });
+
+// Rota para adicionar postagem
+app.post("/add-post", upload.single("imagem"), async (req, res) => {
+    const { titulo, subtitulo, categoria } = req.body;
+    const imagem = req.file ? req.file.filename : "";
+
+    try {
+        const novoPost = new Post({ titulo, subtitulo, categoria, imagem });
+        await novoPost.save();
+        res.json({ message: "✅ Postagem adicionada com sucesso!" });
+    } catch (error) {
+        res.status(500).json({ message: "Erro ao salvar a postagem", error });
+    }
 });
 
-// Rota para servir o index.html
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, 'BLOG-LANTECH', 'index.html')); // Atualizado para a pasta BLOG-LANTECH
+// Rota para buscar postagens por categoria
+app.get("/posts/:categoria", async (req, res) => {
+    try {
+        const categoria = req.params.categoria;
+        const posts = await Post.find({ categoria });
+        res.json(posts);
+    } catch (error) {
+        res.status(500).json({ message: "Erro ao buscar postagens", error });
+    }
 });
 
-// Iniciando o servidor
-app.listen(3000, () => console.log("Servidor rodando na porta 3000"));
+// Iniciar servidor
+app.listen(PORT, () => {
+    console.log(`🚀 Servidor rodando em http://localhost:${PORT}`);
+});

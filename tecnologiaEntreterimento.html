@@ -1,172 +1,35 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/tecnologia.css">
     <title>Tecnologia e Entretenimento</title>
-    <link rel="shortcut icon" href="img/noticia.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/destaqueSemana.css">
-    <!-- Adicionar Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
-
 <body>
-    <header class="header">
-        <div class="logo">LANTECH</div>
-        <nav class="nav-menu">
-            <a href="noticia.html">Noticia</a>
-            <a href="destaqueSemana.html">Destaques da semana</a>
-            <a href="mundo.html">Mundo</a>
-        </nav>
-    </header>
-
-    <section class="news-container">
-        <h1>Tecnologia e Entretenimento</h1>
-        <p class="date"></p>
-
-        <div id="postListContainer" class="content"></div>
-    </section>
-
-    <!-- Modal para exibir a notícia completa -->
-    <div id="newsModal" class="news-modal">
-        <div class="modal-content">
-            <span id="closeModal" class="close">&times;</span>
-            <h2 id="modalTitle"></h2>
-            <h3 id="modalSubtitle"></h3>
-            <p id="modalContent"></p>
-        </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2025 Blog. Todos os direitos reservados.</p>
-    </footer>
+    <h1>Notícias de Tecnologia e Entretenimento</h1>
+    <div id="postagens"></div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Atualiza a data automaticamente
-            const dateElement = document.querySelector(".date");
-            const hoje = new Date();
-            const diasSemana = ["domingo", "segunda-feira", "terça-feira", "quarta-feira", "quinta-feira", "sexta-feira", "sábado"];
-            const mesesAno = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
-            const dataFormatada = `${diasSemana[hoje.getDay()]}, ${hoje.getDate()} de ${mesesAno[hoje.getMonth()]} de ${hoje.getFullYear()}`;
-            dateElement.textContent = dataFormatada;
+        async function carregarPostagens() {
+            const resposta = await fetch("http://localhost:5000/posts/tecnologiaEntreterimento");
+            const postagens = await resposta.json();
+            
+            const container = document.getElementById("postagens");
+            container.innerHTML = "";
 
-            // Carrega postagens da categoria "tecnologia" através da API
-            carregarPostagens("tecnologia");
-        });
-
-        // Função para carregar postagens da categoria
-        async function carregarPostagens(categoria) {
-            const resposta = await fetch(`http://localhost:3000/posts?categoria=${categoria}`);
-            const posts = await resposta.json();
-
-            const postListContainer = document.getElementById('postListContainer');
-            postListContainer.innerHTML = "";
-
-            if (posts.length === 0) {
-                postListContainer.innerHTML = '<p>Não há postagens nesta categoria.</p>';
-                return;
-            }
-
-            postListContainer.innerHTML = posts.map((post, index) => {
-                const likeCount = post.likes || 0;  // Pega a quantidade de curtidas armazenada
-                return `
-                    <div class="news-card">
-                        <img src="${post.imagem}" alt="${post.titulo}">
-                        <div class="news-details">
-                            <h3>${post.titulo}</h3>
-                            <p><strong>${post.subtitulo.substring(0, 60)}</strong></p>
-                            <p>${post.conteudo.substring(0, 60)}...</p>
-                            <button class="view-news" onclick="viewNews(${index})">Ver Notícia</button>
-                            <!-- Ícones de ação -->
-                            <div class="action-icons">
-                                <button class="share-icon" onclick="shareNews(${index})"><i class="fas fa-share-alt"></i> Compartilhar</button>
-                                <button class="like-icon" onclick="likeNews(${index})">
-                                    <i class="fas fa-thumbs-up"></i> Curtir
-                                    <span id="likeCount-${index}" class="like-count">${likeCount}</span> 
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+            postagens.forEach(post => {
+                const div = document.createElement("div");
+                div.innerHTML = `
+                    <h2>${post.titulo}</h2>
+                    <p>${post.conteudo}</p>
+                    <img src="${post.imagem}" alt="Imagem da notícia">
                 `;
-            }).join('');
+                container.appendChild(div);
+            });
         }
 
-        // Exibe a notícia completa em um modal
-        function viewNews(index) {
-            const posts = JSON.parse(localStorage.getItem('tecnologia')) || [];
-            const post = posts[index];
-
-            // Exibe o modal com o conteúdo completo da notícia
-            document.getElementById("modalTitle").textContent = post.titulo;
-            document.getElementById("modalSubtitle").textContent = post.subtitulo;
-            document.getElementById("modalContent").textContent = post.conteudo;
-
-            // Exibe o modal
-            document.getElementById("newsModal").style.display = "block";
-        }
-
-        // Função de Compartilhar
-        function shareNews(index) {
-            const posts = JSON.parse(localStorage.getItem('tecnologia')) || [];
-            const post = posts[index];
-            const postUrl = post.url || '';  // Verifique se o post tem um URL associado
-
-            // Caso o navegador suporte a Web Share API
-            if (navigator.share) {
-                navigator.share({
-                    title: post.titulo,
-                    text: post.subtitulo,
-                    url: postUrl
-                }).then(() => {
-                    console.log('Compartilhado com sucesso!');
-                }).catch((error) => {
-                    console.log('Erro ao compartilhar: ', error);
-                });
-            } else {
-                // Caso não tenha suporte, abrir uma nova janela para o compartilhamento
-                const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}`;
-                window.open(shareUrl, '_blank', 'width=600,height=400');
-            }
-        }
-
-        // Função de Curtir
-        function likeNews(index) {
-            const posts = JSON.parse(localStorage.getItem('tecnologia')) || [];
-            const post = posts[index];
-
-            // Se não tiver a propriedade "likes", inicialize com 0
-            if (!post.likes) {
-                post.likes = 0;
-            }
-
-            // Incrementa o número de curtidas
-            post.likes++;
-
-            // Atualiza o número de curtidas no localStorage
-            posts[index] = post;
-            localStorage.setItem('tecnologia', JSON.stringify(posts));
-
-            // Atualiza a quantidade de curtidas ao lado do botão
-            document.getElementById(`likeCount-${index}`).textContent = post.likes;
-
-            alert(`Você curtiu a notícia: ${post.titulo}`);
-        }
-
-        // Fecha o modal quando o botão de fechar for clicado
-        document.getElementById("closeModal").addEventListener("click", function () {
-            document.getElementById("newsModal").style.display = "none";
-        });
-
-        // Fecha o modal se o usuário clicar fora da área do modal
-        window.onclick = function (event) {
-            if (event.target == document.getElementById("newsModal")) {
-                document.getElementById("newsModal").style.display = "none";
-            }
-        };
+        carregarPostagens();
     </script>
-
 </body>
-
 </html>
