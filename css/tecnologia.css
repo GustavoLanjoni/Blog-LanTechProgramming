@@ -1,0 +1,55 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #222;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+#posts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.post {
+    background-color: white;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    transition: transform 0.3s;
+}
+
+.post:hover {
+    transform: scale(1.05);
+}
+
+h2 {
+    font-size: 1.6em;
+    margin: 10px 0;
+}
+
+p {
+    font-size: 1em;
+    color: #555;
+    margin: 10px 0;
+}
+
+img {
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+strong {
+    font-weight: bold;
+}
