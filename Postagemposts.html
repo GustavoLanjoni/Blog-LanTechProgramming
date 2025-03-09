@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/post.css">
-    <title>Postar Notícia</title>
+    <title>Postar Nova Notícia</title>
 </head>
 <body>
     <h1>Postar Nova Notícia</h1>
@@ -32,22 +32,40 @@
         document.getElementById("formPost").addEventListener("submit", async function(event) {
             event.preventDefault();
 
+            // Exibindo o carregamento enquanto envia os dados
+            const loadingMessage = document.createElement("div");
+            loadingMessage.textContent = "Publicando, por favor aguarde...";
+            document.body.appendChild(loadingMessage);
+
             const formData = new FormData();
             formData.append("titulo", document.getElementById("titulo").value);
             formData.append("conteudo", document.getElementById("conteudo").value);
             formData.append("categoria", document.getElementById("categoria").value);
             formData.append("imagem", document.getElementById("imagem").files[0]);
 
-            const resposta = await fetch("http://localhost:5000/add-post", {
-                method: "POST",
-                body: formData
-            });
+            try {
+                const resposta = await fetch("http://localhost:5000/add-post", {
+                    method: "POST",
+                    body: formData
+                });
 
-            const resultado = await resposta.json();
-            alert(resultado.message);
+                const resultado = await resposta.json();
 
-            if (resposta.ok) {
-                window.location.href = `${document.getElementById("categoria").value}.html`;
+                // Remover a mensagem de carregamento
+                document.body.removeChild(loadingMessage);
+
+                alert(resultado.message); // Exibe a resposta do servidor
+
+                if (resposta.ok) {
+                    // Redireciona para a página da categoria
+                    window.location.href = `${document.getElementById("categoria").value}.html`;
+                } else {
+                    alert("Erro ao adicionar a postagem.");
+                }
+            } catch (error) {
+                // Remover a mensagem de carregamento em caso de erro
+                document.body.removeChild(loadingMessage);
+                alert("Erro ao enviar a postagem: " + error.message);
             }
         });
     </script>

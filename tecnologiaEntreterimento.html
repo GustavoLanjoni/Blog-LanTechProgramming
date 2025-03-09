@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/tecnologia.css">
     <title>Tecnologia e Entretenimento</title>
 </head>
+
 <body>
     <h1>Notícias de Tecnologia e Entretenimento</h1>
 
@@ -40,12 +42,16 @@
                     const dataPostagem = new Date(post.dataPostagem);
                     const dataFormatada = dataPostagem.toLocaleString('pt-BR'); // Formato de data no Brasil
 
-                    postElement.innerHTML = `
-                        <h2>${post.titulo}</h2>
-                        <p><strong>Data:</strong> ${dataFormatada}</p>
-                        <p>${post.conteudo}</p>
-                        <img src="uploads/${post.imagem}" alt="Imagem" width="300">
-                    `;
+                    console.log(post.imagem); // Verifique o nome da imagem
+
+postElement.innerHTML = `
+    <h2>${post.titulo}</h2>
+    <p><strong>Data:</strong> ${dataFormatada}</p>
+    <p>${post.conteudo}</p>
+    <img src="http://localhost:5000/uploads/${post.imagem}" alt="Imagem" width="300">
+`;
+
+
 
                     postagensContainer.appendChild(postElement);
                 });
@@ -57,4 +63,5 @@
         carregarPosts();
     </script>
 </body>
+
 </html>

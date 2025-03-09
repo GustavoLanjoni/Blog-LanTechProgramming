@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const multer = require("multer");
 const cors = require("cors");
+const path = require("path");
 
 const app = express();
 const PORT = 5000;
@@ -9,7 +10,10 @@ const PORT = 5000;
 // Configuração do CORS
 app.use(cors());
 app.use(express.json());
-app.use(express.static("uploads"));
+
+// Caminho mais seguro para a pasta 'uploads'
+const UPLOADS_DIR = path.join(__dirname, 'uploads');
+app.use(express.static(UPLOADS_DIR)); 
 
 // Conectar ao MongoDB
 mongoose.connect("mongodb://127.0.0.1:27017/meu_blog", {
@@ -24,16 +28,21 @@ const postSchema = new mongoose.Schema({
     titulo: String,
     subtitulo: String,
     categoria: String,
-    imagem: String
+    imagem: String,
+    dataPostagem: { type: Date, default: Date.now }
 });
 
 const Post = mongoose.model("Post", postSchema);
 
 // Configuração do Multer para upload de imagens
 const storage = multer.diskStorage({
-    destination: "uploads/",
+    destination: (req, file, cb) => {
+        cb(null, UPLOADS_DIR); // Caminho absoluto para uploads
+    },
     filename: (req, file, cb) => {
-        cb(null, file.originalname);
+        // Garantir que o nome da imagem seja único
+        const extension = path.extname(file.originalname);
+        cb(null, Date.now() + extension); // Usando timestamp para garantir nome único
     }
 });
 
@@ -49,6 +58,7 @@ app.post("/add-post", upload.single("imagem"), async (req, res) => {
         await novoPost.save();
         res.json({ message: "✅ Postagem adicionada com sucesso!" });
     } catch (error) {
+        console.error(error); // Melhor controle de erro
         res.status(500).json({ message: "Erro ao salvar a postagem", error });
     }
 });
@@ -60,6 +70,7 @@ app.get("/posts/:categoria", async (req, res) => {
         const posts = await Post.find({ categoria });
         res.json(posts);
     } catch (error) {
+        console.error(error); // Melhor controle de erro
         res.status(500).json({ message: "Erro ao buscar postagens", error });
     }
 });
