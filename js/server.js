@@ -5,6 +5,7 @@ const cors = require("cors");
 const path = require("path");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken"); // Para criar um token JWT (caso deseje adicionar autenticação com token)
+const nodemailer = require("nodemailer"); // Adicionando nodemailer
 
 const app = express();
 const PORT = 5000;
@@ -49,7 +50,6 @@ const comentarioSchema = new mongoose.Schema({
 
 const Comentario = mongoose.model("Comentario", comentarioSchema);
 
-
 // Configuração do Multer para upload de imagens
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -80,7 +80,7 @@ app.post("/add-post", upload.single("imagem"), async (req, res) => {
 
 // Rota para criar um novo usuário
 app.post("/criarConta", async (req, res) => {
-    const { email, senha } = req.body;  // Remova role daqui
+    const { email, senha } = req.body;
 
     // Verificação e criação do usuário sem o `role`
     const usuarioExistente = await Usuario.findOne({ email });
@@ -90,7 +90,7 @@ app.post("/criarConta", async (req, res) => {
 
     const senhaCriptografada = await bcrypt.hash(senha, 10);
 
-    const novoUsuario = new Usuario({ email, senha: senhaCriptografada }); // Sem o `role`
+    const novoUsuario = new Usuario({ email, senha: senhaCriptografada });
     try {
         await novoUsuario.save();
         res.json({ message: "Conta criada com sucesso!" });
@@ -98,7 +98,6 @@ app.post("/criarConta", async (req, res) => {
         res.status(500).json({ message: "Erro ao criar conta", error });
     }
 });
-
 
 // Rota para login (autenticação)
 app.post("/loginAdm", async (req, res) => {
@@ -116,26 +115,52 @@ app.post("/loginAdm", async (req, res) => {
             return res.status(400).json({ message: "E-mail ou senha incorretos" });
         }
 
-        // Gerar um token JWT para o usuário (caso deseje implementar autenticação por token)
-        const token = jwt.sign({ id: usuario._id, role: usuario.role }, "secreta", { expiresIn: "1h" });
+        // Gerar um token JWT para o usuário
+        const token = jwt.sign({ id: usuario._id }, "secreta", { expiresIn: "1h" });
 
-        res.json({ message: "Login bem-sucedido", token }); // Retorna o token gerado
+        res.json({ message: "Login bem-sucedido", token });
     } catch (error) {
         res.status(500).json({ message: "Erro ao realizar login", error });
     }
 });
 
-
 // Rota para buscar postagens por categoria
 app.get("/posts/:categoria", async (req, res) => {
     try {
         const categoria = req.params.categoria;
-        console.log("Categoria recebida:", categoria); // Adicionado para debug
         const posts = await Post.find({ categoria });
         res.json(posts);
     } catch (error) {
         res.status(500).json({ message: "Erro ao buscar postagens", error });
     }
+});
+
+// Rota para enviar o comentário por e-mail
+app.post("/enviarComentario", async (req, res) => {
+    const { nome, email, mensagem } = req.body;
+
+    // Configuração do transporte para envio de e-mail
+    const transporter = nodemailer.createTransport({
+        service: "gmail", // Pode usar outro serviço de e-mail como Outlook, etc.
+        auth: {
+            user: "gustavosilva94514@gmail.com", // Seu e-mail
+            pass: "vhhe tuvs twwu arjr" // Senha ou App Password
+        }
+    });
+
+    const mailOptions = {
+        from: "seu-email@gmail.com", // E-mail de origem
+        to: "seu-email@gmail.com", // E-mail de destino
+        subject: "Novo Comentário Recebido",
+        text: `Nome: ${nome}\nE-mail: ${email}\nMensagem: ${mensagem}`
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            return res.status(500).json({ message: "Erro ao enviar o comentário", error });
+        }
+        res.json({ message: "Comentário enviado com sucesso!" });
+    });
 });
 
 // Iniciar servidor
