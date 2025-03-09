@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -18,35 +18,44 @@
             <label for="password">Senha:</label>
             <input type="password" id="password" required>
 
-            <label for="role">Escolha sua função:</label>
-            <select id="role">
-                <option value="postar_noticia">Postar Notícia</option>
-                <option value="designer">Designer</option>
-                <option value="programador">Programador</option>
-            </select>
-            
-            <p>ja tem conta? <a href="loginAdm.html"><strong style="color: blue;">Entrar</strong></a></p><br>
+            <p>Já tem conta? <a href="loginAdm.html"><strong style="color: blue;">Entrar</strong></a></p><br>
 
             <button type="submit">Criar Conta</button>
         </form>
     </div>
 
     <script>
-        document.getElementById("signupForm").addEventListener("submit", function (event) {
-            event.preventDefault(); // Impede o envio do formulário
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("signupForm").addEventListener("submit", async function (event) {
+                event.preventDefault(); // Impede o envio do formulário
 
-            let role = document.getElementById("role").value;
+                const email = document.getElementById("email").value;
+                const senha = document.getElementById("password").value;
 
-            // Redireciona para a página correspondente
-            if (role === "postar_noticia") {
-                window.location.href = "postar_noticia.html";
-            } else if (role === "designer") {
-                window.location.href = "designer.html";
-            } else if (role === "programador") {
-                window.location.href = "programador.html";
-            }
+                // Enviar dados para o servidor
+                try {
+                    const response = await fetch("http://localhost:5000/criarConta", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ email, senha }), 
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        alert(data.message); // Exibe a mensagem de sucesso
+                        window.location.href = "loginAdm.html"; // Redireciona para a página de login
+                    } else {
+                        alert(data.message); // Exibe a mensagem de erro
+                    }
+                } catch (error) {
+                    console.error("Erro ao criar conta", error);
+                    alert("Erro ao criar conta");
+                }
+            });
         });
-
     </script>
 </body>
 
